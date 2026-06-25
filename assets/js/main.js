@@ -5,6 +5,20 @@ if (savedTheme) {
   root.dataset.theme = savedTheme;
 }
 
+for (const mark of document.querySelectorAll('.brand-mark')) {
+  mark.textContent = '';
+  mark.style.backgroundImage = "url('assets/images/profile-photo.svg')";
+  mark.style.backgroundSize = 'cover';
+  mark.style.backgroundPosition = 'center';
+  mark.style.overflow = 'hidden';
+}
+
+if (window.location.pathname.includes('/projects/')) {
+  for (const mark of document.querySelectorAll('.brand-mark')) {
+    mark.style.backgroundImage = "url('../assets/images/profile-photo.svg')";
+  }
+}
+
 const year = document.querySelector('#year');
 if (year) {
   year.textContent = new Date().getFullYear();
