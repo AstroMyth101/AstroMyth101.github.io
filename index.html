@@ -1,10 +1,239 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Rashid Al-Maawali</title>
-  </head>
-  <body>
-    <h1>Rashid Al-Maawali</h1>
-    <p>Mechatronics Engineering Student | Embedded Control | Robotics</p>
-  </body>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rashid Al-Ma'awali | Mechatronics Engineering Portfolio</title>
+  <meta name="description" content="Portfolio of Rashid Al-Ma'awali, a Mechatronics Engineering student focused on embedded control, electropneumatics, robotics, and soft robotic systems.">
+  <meta name="author" content="Rashid Al-Ma'awali">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:title" content="Rashid Al-Ma'awali | Mechatronics Engineering Portfolio">
+  <meta property="og:description" content="Embedded control, electropneumatics, robotics, CAD design, and research-oriented soft robotics systems.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://AstroMyth101.github.io/">
+  <link rel="canonical" href="https://AstroMyth101.github.io/">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Rashid Al-Ma'awali homepage">
+        <span class="brand-mark">RA</span>
+        <span class="brand-text">Rashid Al-Ma'awali</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <span class="sr-only">Toggle navigation</span>
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme">Theme</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero section-pad">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Mechatronics Engineering Student · Muscat, Oman</p>
+          <h1>Embedded control, electropneumatics, and robotics that survive the bench.</h1>
+          <p class="hero-lede">
+            I am a Mechatronics Engineering student at Sultan Qaboos University focused on practical hardware-software systems: soft robotics, sensor feedback, pneumatic actuation, control logic, CAD design, and technical documentation.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">View projects</a>
+            <a class="button button-secondary" href="https://github.com/AstroMyth101" target="_blank" rel="noopener">GitHub</a>
+            <a class="button button-secondary" href="https://www.linkedin.com/in/rashidm101/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+          <div class="signal-row" aria-label="Core areas">
+            <span>Embedded Control</span>
+            <span>Electropneumatics</span>
+            <span>Robotics</span>
+            <span>Mechanical CAD</span>
+          </div>
+        </div>
+
+        <aside class="hero-panel reveal" aria-label="Portfolio highlights">
+          <div class="panel-glow"></div>
+          <div class="terminal-card">
+            <div class="terminal-bar"><span></span><span></span><span></span></div>
+            <pre><code>system.identity = "Rashid Al-Ma'awali"
+focus = [
+  "embedded control",
+  "soft robotic actuation",
+  "sensor feedback",
+  "engineering documentation"
+]
+status = "building, testing, improving"</code></pre>
+          </div>
+          <div class="metrics-grid">
+            <div><strong>2027</strong><span>Expected graduation</span></div>
+            <div><strong>3.29</strong><span>Current GPA / 4.00</span></div>
+            <div><strong>C2</strong><span>English proficiency</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-pad border-top" id="about">
+      <div class="container split-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">About</p>
+          <h2>Engineering is where ideas meet wiring, tolerances, and inconvenient reality.</h2>
+        </div>
+        <div class="content-stack reveal">
+          <p>My work sits at the intersection of mechanical design, embedded firmware, controls, and pneumatic actuation. I enjoy building systems that move, sense, respond, and provide measurable feedback rather than remaining as clean diagrams on paper.</p>
+          <p>I value clear documentation, practical testing, and honest limitations. A design that works only in a slide deck is decoration; a design that survives troubleshooting earns respect.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad border-top" id="projects">
+      <div class="container">
+        <div class="section-heading wide reveal">
+          <p class="eyebrow">Selected Engineering Projects</p>
+          <h2>Project work with hardware, firmware, CAD, testing, and documentation.</h2>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card featured reveal">
+            <div class="project-visual" aria-hidden="true">
+              <span class="chip-icon">ESP32</span>
+              <span class="flow-line"></span>
+            </div>
+            <div class="card-content">
+              <p class="project-kicker">Flagship Project · Spring-Summer 2026</p>
+              <h3>Soft Robotic Rehabilitation Glove Controller</h3>
+              <p>Portable electropneumatic controller using ESP32, pressure/vacuum pumps, solenoid valves, flex-sensor feedback, angle-control logic, serial telemetry, calibration routines, and fault handling.</p>
+              <div class="tag-row"><span>ESP32</span><span>C++</span><span>Electropneumatics</span><span>Flex Sensors</span><span>ROS 2</span></div>
+              <div class="card-actions">
+                <a href="projects/soft-robotic-glove.html">Read case study</a>
+                <a href="https://github.com/AstroMyth101/RehabGloveController" target="_blank" rel="noopener">Repository</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="card-content">
+              <p class="project-kicker">Machine Design · Fall 2025</p>
+              <h3>Speed Reduction Gearbox Design</h3>
+              <p>Designed a 2.53:1 gearbox linking a 3800 rpm prime mover to a reciprocating load, including shaft and gear sizing using DE-Goodman fatigue and AGMA methods.</p>
+              <div class="tag-row"><span>SOLIDWORKS</span><span>Machine Design</span><span>AGMA</span></div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="card-content">
+              <p class="project-kicker">Instrumentation · Fall 2025</p>
+              <h3>Data Acquisition and Sensor Interfacing</h3>
+              <p>Built a calibration workflow that converts ultrasonic sensor analog voltage data into displacement measurements over a 0-3.3 V range and documented the analysis process.</p>
+              <div class="tag-row"><span>DAQ</span><span>Calibration</span><span>Sensors</span></div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="card-content">
+              <p class="project-kicker">Embedded Systems · Fall 2025</p>
+              <h3>Secure Access Box with Automated Locking System</h3>
+              <p>Programmed ATmega8 access-control logic in C and produced Proteus schematics integrating user input with automated locking behavior.</p>
+              <div class="tag-row"><span>AVR</span><span>C</span><span>Proteus</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad border-top" id="experience">
+      <div class="container split-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Experience</p>
+          <h2>Research and student leadership with real technical responsibility.</h2>
+        </div>
+        <div class="timeline reveal">
+          <article class="timeline-item">
+            <span class="timeline-date">Jun 2026</span>
+            <h3>Research Assistant · Soft Robotic Actuators & Tele-Rehabilitation</h3>
+            <p class="muted">Sultan Qaboos University, College of Engineering</p>
+            <ul>
+              <li>Building and validating the control system for a soft robotic rehabilitation glove.</li>
+              <li>Developing ROS 2/micro-ROS integration for motion-pattern adjustment and real-time logging.</li>
+              <li>Preparing technical documentation covering architecture, testing, and engineering recommendations.</li>
+            </ul>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-date">Jul 2024 – Jul 2025</span>
+            <h3>President, Projects Committee · Free Open-Source Software Society</h3>
+            <p>Led project-committee planning, supported technical workshop organization, and coordinated with society members, faculty, and student teams.</p>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-date">Jul 2023 – Jul 2024</span>
+            <h3>Vice President, Projects Committee · Mechatronics Engineering Society</h3>
+            <p>Coordinated technical logistics, venue arrangements, and team registration for a university-wide robotics event.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad border-top" id="skills">
+      <div class="container">
+        <div class="section-heading wide reveal">
+          <p class="eyebrow">Technical Stack</p>
+          <h2>Skills grouped by how they are used in real systems.</h2>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card reveal"><h3>Embedded & Control</h3><p>C/C++, Python, MATLAB, ESP32, Arduino, AVR, ROS 2, micro-ROS, serial telemetry, sensor interfacing, finite-state machines, control systems.</p></article>
+          <article class="skill-card reveal"><h3>Mechanical & Pneumatic</h3><p>SOLIDWORKS, AutoCAD, Fusion 360, machine design, pneumatics/hydraulics, electropneumatics, pumps, valves, mechanical CAD.</p></article>
+          <article class="skill-card reveal"><h3>Documentation & Leadership</h3><p>Technical reports, GitHub documentation, project coordination, team leadership, workshop organization, communication.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad border-top" id="resume">
+      <div class="container resume-grid">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Resume Snapshot</p>
+          <h2>Mechatronics Engineering at Sultan Qaboos University.</h2>
+          <p class="muted">Expected graduation: June 2027 · Muscat, Oman</p>
+        </div>
+        <div class="resume-card reveal">
+          <h3>Education</h3>
+          <p><strong>Sultan Qaboos University</strong> — B.Sc. in Mechatronics Engineering</p>
+          <p>Coursework includes Control Systems, Embedded Systems, Instrumentation & Measurements, Pneumatics & Hydraulics, Electromechanical Systems & Actuators, Machine Design, Mechatronics System Design, Thermal Sciences, and Modelling & Simulation.</p>
+          <h3>Certifications</h3>
+          <p>Basics of AutoCAD · NVIDIA Fundamentals of Deep Learning · SQU Certificate of Excellence · Fundamentals of Python</p>
+          <h3>Languages</h3>
+          <p>Arabic: Native · English: CEFR C2 Proficiency via goFLUENT</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad contact-section" id="contact">
+      <div class="container contact-card reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>Interested in embedded systems, robotics, controls, automation, or practical engineering work?</h2>
+        <p>Reach me through email, LinkedIn, or GitHub. Phone number intentionally omitted from the public website; bots can go chew wires somewhere else.</p>
+        <div class="contact-actions">
+          <a class="button button-primary" href="mailto:s140613@student.squ.edu.om">Email me</a>
+          <a class="button button-secondary" href="https://www.linkedin.com/in/rashidm101/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="button button-secondary" href="https://github.com/AstroMyth101" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© <span id="year"></span> Rashid Al-Ma'awali. Built with plain HTML, CSS, and stubborn engineering taste.</p>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+</body>
 </html>
