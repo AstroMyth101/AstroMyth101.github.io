@@ -24,21 +24,32 @@ if (year) {
   year.textContent = new Date().getFullYear();
 }
 
-const backToTopLinks = document.querySelectorAll('a[href="#top"]');
-for (const link of backToTopLinks) {
-  link.addEventListener('click', (event) => {
-    event.preventDefault();
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
-    });
+function scrollToPageTop() {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const behavior = reducedMotion ? 'auto' : 'smooth';
 
-    if (history.pushState) {
-      history.pushState(null, '', window.location.pathname + window.location.search);
-    }
-  });
+  window.scrollTo({ top: 0, left: 0, behavior });
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+
+  if (history.replaceState) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
 }
+
+document.addEventListener('click', (event) => {
+  const link = event.target.closest('a');
+  if (!link) return;
+
+  const href = link.getAttribute('href');
+  const text = link.textContent.trim().toLowerCase();
+
+  if (href === '#top' || href === '#page-top' || text === 'back to top ↑' || text === 'back to top') {
+    event.preventDefault();
+    event.stopPropagation();
+    scrollToPageTop();
+  }
+}, true);
 
 const themeToggle = document.querySelector('.theme-toggle');
 if (themeToggle) {
