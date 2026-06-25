@@ -24,6 +24,22 @@ if (year) {
   year.textContent = new Date().getFullYear();
 }
 
+const backToTopLinks = document.querySelectorAll('a[href="#top"]');
+for (const link of backToTopLinks) {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+    });
+
+    if (history.pushState) {
+      history.pushState(null, '', window.location.pathname + window.location.search);
+    }
+  });
+}
+
 const themeToggle = document.querySelector('.theme-toggle');
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
