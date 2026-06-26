@@ -1,7 +1,26 @@
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
+import Image from "@11ty/eleventy-img";
+
+// Optimize a source image (in src/_images/...) into responsive webp + original format.
+async function imageShortcode(src, alt = "", sizes = "(min-width: 760px) 720px, 100vw") {
+  const metadata = await Image(src, {
+    widths: [480, 960, 1440],
+    formats: ["webp", null],
+    outputDir: "./_site/assets/img/",
+    urlPath: "/assets/img/",
+  });
+  return Image.generateHTML(metadata, {
+    alt,
+    sizes,
+    loading: "lazy",
+    decoding: "async",
+  });
+}
 
 export default function (eleventyConfig) {
+  eleventyConfig.addAsyncShortcode("image", imageShortcode);
+
   // ---- Passthrough copy (assets served at site root) ----
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/.nojekyll": ".nojekyll" });

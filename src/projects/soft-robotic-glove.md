@@ -1,12 +1,19 @@
 ---
 layout: case-study.njk
 order: 1
+featured: true
+hasCaseStudy: true
+domain: Robotics
+cardTitle: "Soft Robotic Rehabilitation Glove Controller"
+repo: "https://github.com/AstroMyth101/Soft-Robotic-Glove-Portfolio"
+thumbnail: "./src/_images/projects/soft-robotic-glove/system-diagram.png"
 title: "Soft Robotic Rehabilitation Glove Controller | Rashid Al-Ma'awali"
 caseTitle: "Soft Robotic Rehabilitation Glove Controller"
 description: "A bench-validated electropneumatic controller for a soft robotic rehabilitation glove (ESP32, PID + finite-state machine, flex-sensor feedback) — built as an MCTE5255 course project and expanded as funded research."
 kicker: "Flagship · Course Project → Funded Research · 2026"
 summary: "Portable electropneumatic controller (ESP32, PID + finite-state machine, flex-sensor feedback) for assisted finger motion — built for a course, then expanded as a Research Assistant."
 tags: [ESP32, "C++", PID, FSM, Electropneumatics, Flex Sensors, "ROS 2", micro-ROS]
+cardTags: [ESP32, "C++", PID, Electropneumatics, "ROS 2"]
 heroTags: [ESP32, "C++", Electropneumatics, "Flex Sensors", PID, FSM]
 actions:
   - label: "Public portfolio repository"
@@ -46,6 +53,9 @@ sections:
       battery-powered, well-documented platform.
   - eyebrow: System Architecture
     heading: "Embedded controller → drivers → pumps & valve → soft glove → flex-sensor feedback."
+    image: "./src/_images/projects/soft-robotic-glove/system-diagram.png"
+    imageAlt: "Block diagram of the final controller: Host PC and ROS 2 link to an ESP32 running PID, which drives a MOSFET stage to the pressure and vacuum pumps, through a 3/2 solenoid valve and air-distribution manifold to the soft glove, with flex-sensor feedback."
+    caption: "Final control architecture — one pump, one vacuum source, and a single 3/2 solenoid valve, with flex-sensor feedback closing the loop."
     body: |
       A centralized ESP32 coordinates sensing, control, actuation, and telemetry. Low-power
       logic is electrically isolated from the higher-current pneumatic loads.

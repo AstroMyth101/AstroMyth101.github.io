@@ -45,7 +45,7 @@ layout: base.njk
         {%- if s.body %}{{ s.body | markdown | safe }}{% endif %}
         {%- if s.image %}
         <figure class="case-figure">
-          <img src="{{ s.image }}" alt="{{ s.imageAlt or '' }}" loading="lazy" decoding="async">
+          {% image s.image, s.imageAlt %}
           {%- if s.caption %}<figcaption>{{ s.caption }}</figcaption>{% endif %}
         </figure>
         {%- endif %}
