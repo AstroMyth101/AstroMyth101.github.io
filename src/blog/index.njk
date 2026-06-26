@@ -1,0 +1,32 @@
+---
+layout: base.njk
+title: "Writing | Rashid Al-Ma'awali"
+description: "Short notes on embedded control, robotics, and practical mechatronics."
+permalink: /blog/
+eleventyExcludeFromCollections: true
+---
+<main id="main" class="section-pad">
+  <div class="container">
+    <div class="section-heading wide reveal">
+      <p class="eyebrow">Writing</p>
+      <h1>Short notes on embedded control, robotics, and practical mechatronics.</h1>
+    </div>
+
+    {%- if collections.posts.length %}
+    <ul class="post-list reveal">
+      {%- for post in collections.posts %}
+      <li class="post-list-item">
+        <a href="{{ post.url }}">
+          <span class="post-date">{{ post.date | readableDate }}</span>
+          <h3>{{ post.data.title }}</h3>
+          {%- if post.data.description %}<p>{{ post.data.description }}</p>{% endif %}
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+    <p class="muted" style="margin-top:1.5rem"><a href="/feed.xml">Subscribe via RSS →</a></p>
+    {%- else %}
+    <p class="muted">First posts coming soon.</p>
+    {%- endif %}
+  </div>
+</main>

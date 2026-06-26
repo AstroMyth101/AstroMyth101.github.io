@@ -1,0 +1,15 @@
+---
+layout: base.njk
+schemaType: Article
+---
+<main id="main" class="section-pad">
+  <article class="container post">
+    <a class="back-link" href="/blog/">← All writing</a>
+    <p class="eyebrow">{{ date | readableDate }}{% if topics %} · {{ topics | join(" · ") }}{% endif %}</p>
+    <h1>{{ title }}</h1>
+    {%- if description %}<p class="hero-lede">{{ description }}</p>{% endif %}
+    <div class="post-body">
+      {{ content | safe }}
+    </div>
+  </article>
+</main>

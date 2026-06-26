@@ -1,23 +1,5 @@
+// Initial theme is set pre-paint by an inline script in <head>; this file handles the toggle.
 const root = document.documentElement;
-const savedTheme = localStorage.getItem('theme');
-
-if (savedTheme) {
-  root.dataset.theme = savedTheme;
-}
-
-for (const mark of document.querySelectorAll('.brand-mark')) {
-  mark.textContent = '';
-  mark.style.backgroundImage = "url('assets/images/profile-photo.svg')";
-  mark.style.backgroundSize = 'cover';
-  mark.style.backgroundPosition = 'center';
-  mark.style.overflow = 'hidden';
-}
-
-if (window.location.pathname.includes('/projects/')) {
-  for (const mark of document.querySelectorAll('.brand-mark')) {
-    mark.style.backgroundImage = "url('../assets/images/profile-photo.svg')";
-  }
-}
 
 const year = document.querySelector('#year');
 if (year) {
@@ -92,4 +74,24 @@ if ('IntersectionObserver' in window) {
   revealItems.forEach((item) => observer.observe(item));
 } else {
   revealItems.forEach((item) => item.classList.add('is-visible'));
+}
+
+// Project filtering (progressive enhancement: without JS, all cards show)
+const filterChips = document.querySelectorAll('.filter-chip');
+const filterableCards = document.querySelectorAll('.project-card[data-domain]');
+
+if (filterChips.length && filterableCards.length) {
+  for (const chip of filterChips) {
+    chip.addEventListener('click', () => {
+      const filter = chip.dataset.filter;
+      for (const c of filterChips) {
+        const active = c === chip;
+        c.classList.toggle('is-active', active);
+        c.setAttribute('aria-pressed', String(active));
+      }
+      for (const card of filterableCards) {
+        card.hidden = filter !== 'all' && card.dataset.domain !== filter;
+      }
+    });
+  }
 }

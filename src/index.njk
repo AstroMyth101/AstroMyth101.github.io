@@ -1,0 +1,187 @@
+---
+layout: base.njk
+title: "Rashid Al-Ma'awali | Mechatronics Engineering Portfolio"
+description: "Portfolio of Rashid Al-Ma'awali, a Mechatronics Engineering student focused on embedded control, electropneumatics, robotics, and soft robotic systems."
+ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and research-oriented soft robotics systems."
+---
+<main id="main">
+  <section class="hero section-pad">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Mechatronics Engineering Student · Muscat, Oman</p>
+        <h1>Embedded control, electropneumatics, and robotics that survive the bench.</h1>
+        <p class="hero-lede">
+          I am a Mechatronics Engineering student at Sultan Qaboos University focused on practical hardware-software systems: soft robotics, sensor feedback, pneumatic actuation, control logic, CAD design, and technical documentation.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">View projects</a>
+          <a class="button button-secondary" href="/resume/">Résumé</a>
+          <a class="button button-secondary" href="{{ site.github }}" target="_blank" rel="noopener">GitHub</a>
+          <a class="button button-secondary" href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="signal-row" aria-label="Core areas">
+          <span>Embedded Control</span>
+          <span>Electropneumatics</span>
+          <span>Robotics</span>
+          <span>Mechanical CAD</span>
+        </div>
+      </div>
+
+      <aside class="hero-panel reveal" aria-label="Portfolio highlights">
+        <div class="panel-glow"></div>
+        <div class="terminal-card">
+          <div class="terminal-bar"><span></span><span></span><span></span></div>
+          <pre><code>system.identity = "Rashid Al-Ma'awali"
+focus = [
+  "embedded control",
+  "soft robotic actuation",
+  "sensor feedback",
+  "engineering documentation"
+]
+status = "building, testing, improving"</code></pre>
+        </div>
+        <div class="metrics-grid">
+          <div><strong>2027</strong><span>Expected graduation</span></div>
+          <div><strong>3.29</strong><span>Current GPA / 4.00</span></div>
+          <div><strong>C2</strong><span>English proficiency</span></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section-pad border-top" id="about">
+    <div class="container split-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">About</p>
+        <h2>Engineering is where ideas meet wiring, tolerances, and inconvenient reality.</h2>
+      </div>
+      <div class="content-stack reveal">
+        <p>My work sits at the intersection of mechanical design, embedded firmware, controls, and pneumatic actuation. I enjoy building systems that move, sense, respond, and provide measurable feedback rather than remaining as clean diagrams on paper.</p>
+        <p>I value clear documentation, practical testing, and honest limitations. A design that works only in a slide deck is decoration; a design that survives troubleshooting earns respect.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad border-top" id="projects">
+    <div class="container">
+      <div class="section-heading wide reveal">
+        <p class="eyebrow">Selected Engineering Projects</p>
+        <h2>Project work with hardware, firmware, CAD, testing, and documentation.</h2>
+      </div>
+
+      <div class="project-filters" role="group" aria-label="Filter projects by area">
+        <button class="filter-chip is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+        {%- for d in collections.projectDomains %}
+        <button class="filter-chip" type="button" data-filter="{{ d }}" aria-pressed="false">{{ d }}</button>
+        {%- endfor %}
+      </div>
+
+      <div class="project-grid">
+        {%- for p in collections.projects %}
+        <article class="project-card reveal{{ ' featured' if p.data.featured }}" data-domain="{{ p.data.domain }}">
+          {%- if p.data.featured %}
+          <div class="project-visual">
+            {%- if p.data.thumbnail %}
+            {% image p.data.thumbnail, p.data.cardTitle + " — system diagram", "(min-width: 900px) 420px, 100vw" %}
+            {%- else %}
+            <span class="chip-icon" aria-hidden="true">{{ p.data.chip or "ESP32" }}</span>
+            {%- endif %}
+          </div>
+          {%- endif %}
+          <div class="card-content">
+            <p class="project-kicker">{{ p.data.kicker }}</p>
+            <h3>{{ p.data.cardTitle or p.data.caseTitle or p.data.title }}</h3>
+            <p>{{ p.data.summary }}</p>
+            {%- set ctags = p.data.cardTags or p.data.tags %}
+            {%- if ctags %}<div class="tag-row">{% for t in ctags %}{% if loop.index <= 5 %}<span>{{ t }}</span>{% endif %}{% endfor %}</div>{% endif %}
+            {%- if (p.data.hasCaseStudy and p.url) or p.data.repo %}
+            <div class="card-actions">
+              {%- if p.data.hasCaseStudy and p.url %}<a href="{{ p.url }}">Read case study →</a>{% endif %}
+              {%- if p.data.repo %}<a href="{{ p.data.repo }}" target="_blank" rel="noopener">Repository</a>{% endif %}
+            </div>
+            {%- endif %}
+          </div>
+        </article>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad border-top" id="experience">
+    <div class="container split-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Experience</p>
+        <h2>Research and student leadership with real technical responsibility.</h2>
+      </div>
+      <div class="timeline reveal">
+        <article class="timeline-item">
+          <span class="timeline-date">Jun 2026</span>
+          <h3>Research Assistant · Soft Robotic Actuators &amp; Tele-Rehabilitation</h3>
+          <p class="muted">Sultan Qaboos University, College of Engineering</p>
+          <ul>
+            <li>Building and validating the control system for a soft robotic rehabilitation glove.</li>
+            <li>Developing ROS 2/micro-ROS integration for motion-pattern adjustment and real-time logging.</li>
+            <li>Preparing technical documentation covering architecture, testing, and engineering recommendations.</li>
+          </ul>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-date">Jul 2024 – Jul 2025</span>
+          <h3>President, Projects Committee · Free Open-Source Software Society</h3>
+          <p>Led project-committee planning, supported technical workshop organization, and coordinated with society members, faculty, and student teams.</p>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-date">Jul 2023 – Jul 2024</span>
+          <h3>Vice President, Projects Committee · Mechatronics Engineering Society</h3>
+          <p>Coordinated technical logistics, venue arrangements, and team registration for a university-wide robotics event.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad border-top" id="skills">
+    <div class="container">
+      <div class="section-heading wide reveal">
+        <p class="eyebrow">Technical Stack</p>
+        <h2>Skills grouped by how they are used in real systems.</h2>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-card reveal"><h3>Embedded &amp; Control</h3><p>C/C++, Python, MATLAB, ESP32, Arduino, AVR, ROS 2, micro-ROS, serial telemetry, sensor interfacing, finite-state machines, control systems.</p></article>
+        <article class="skill-card reveal"><h3>Mechanical &amp; Pneumatic</h3><p>SOLIDWORKS, AutoCAD, Fusion 360, machine design, pneumatics/hydraulics, electropneumatics, pumps, valves, mechanical CAD.</p></article>
+        <article class="skill-card reveal"><h3>Documentation &amp; Leadership</h3><p>Technical reports, GitHub documentation, project coordination, team leadership, workshop organization, communication.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad border-top" id="resume">
+    <div class="container resume-grid">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Resume Snapshot</p>
+        <h2>Mechatronics Engineering at Sultan Qaboos University.</h2>
+        <p class="muted">Expected graduation: June 2027 · Muscat, Oman</p>
+        <p><a class="button button-secondary" href="/resume/">View full résumé →</a></p>
+      </div>
+      <div class="resume-card reveal">
+        <h3>Education</h3>
+        <p><strong>Sultan Qaboos University</strong> — B.Sc. in Mechatronics Engineering</p>
+        <p>Coursework includes Control Systems, Embedded Systems, Instrumentation &amp; Measurements, Pneumatics &amp; Hydraulics, Electromechanical Systems &amp; Actuators, Machine Design, Mechatronics System Design, Thermal Sciences, and Modelling &amp; Simulation.</p>
+        <h3>Certifications</h3>
+        <p>Basics of AutoCAD · NVIDIA Fundamentals of Deep Learning · SQU Certificate of Excellence · Fundamentals of Python</p>
+        <h3>Languages</h3>
+        <p>Arabic: Native · English: CEFR C2 Proficiency via goFLUENT</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad contact-section" id="contact">
+    <div class="container contact-card reveal">
+      <p class="eyebrow">Contact</p>
+      <h2>Interested in embedded systems, robotics, controls, automation, or practical engineering work?</h2>
+      <p>Reach me through email, LinkedIn, or GitHub. Phone number intentionally omitted from the public website; bots can go chew wires somewhere else.</p>
+      <div class="contact-actions">
+        <a class="button button-primary" href="mailto:{{ site.email }}">Email me</a>
+        <a class="button button-secondary" href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="button button-secondary" href="{{ site.github }}" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
