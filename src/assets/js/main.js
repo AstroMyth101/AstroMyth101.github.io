@@ -75,3 +75,23 @@ if ('IntersectionObserver' in window) {
 } else {
   revealItems.forEach((item) => item.classList.add('is-visible'));
 }
+
+// Project filtering (progressive enhancement: without JS, all cards show)
+const filterChips = document.querySelectorAll('.filter-chip');
+const filterableCards = document.querySelectorAll('.project-card[data-domain]');
+
+if (filterChips.length && filterableCards.length) {
+  for (const chip of filterChips) {
+    chip.addEventListener('click', () => {
+      const filter = chip.dataset.filter;
+      for (const c of filterChips) {
+        const active = c === chip;
+        c.classList.toggle('is-active', active);
+        c.setAttribute('aria-pressed', String(active));
+      }
+      for (const card of filterableCards) {
+        card.hidden = filter !== 'all' && card.dataset.domain !== filter;
+      }
+    });
+  }
+}

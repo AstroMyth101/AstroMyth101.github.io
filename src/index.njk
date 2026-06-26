@@ -69,9 +69,16 @@ status = "building, testing, improving"</code></pre>
         <h2>Project work with hardware, firmware, CAD, testing, and documentation.</h2>
       </div>
 
+      <div class="project-filters" role="group" aria-label="Filter projects by area">
+        <button class="filter-chip is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+        {%- for d in collections.projectDomains %}
+        <button class="filter-chip" type="button" data-filter="{{ d }}" aria-pressed="false">{{ d }}</button>
+        {%- endfor %}
+      </div>
+
       <div class="project-grid">
         {%- for p in collections.projects %}
-        <article class="project-card reveal{{ ' featured' if p.data.featured }}">
+        <article class="project-card reveal{{ ' featured' if p.data.featured }}" data-domain="{{ p.data.domain }}">
           {%- if p.data.featured %}
           <div class="project-visual">
             {%- if p.data.thumbnail %}

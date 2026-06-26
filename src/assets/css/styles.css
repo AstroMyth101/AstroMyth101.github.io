@@ -210,6 +210,20 @@ code { font-family: var(--font-mono); }
 .content-stack { color: var(--muted); font-size: 1.08rem; }
 .section-heading { margin-bottom: 2.2rem; }
 
+.project-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.filter-chip {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+.filter-chip:hover { color: var(--text); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.filter-chip.is-active { background: var(--accent); color: #020617; border-color: transparent; }
 .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .project-card { overflow: hidden; min-height: 100%; transition: transform 180ms ease, border-color 180ms ease; }
 .project-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
@@ -303,6 +317,22 @@ code { font-family: var(--font-mono); }
 .resume-skills { display: grid; gap: 0.7rem; margin: 0; }
 .resume-skills dt { font-weight: 700; }
 .resume-skills dd { margin: 0.15rem 0 0; color: var(--muted); }
+
+/* --- Blog --- */
+.post { max-width: 760px; margin-inline: auto; }
+.post .hero-lede { margin-top: 1rem; }
+.post-body { margin-top: 2rem; color: var(--muted); font-size: 1.08rem; }
+.post-body h2 { font-size: 1.6rem; margin-top: 2rem; }
+.post-body h3 { margin-top: 1.6rem; }
+.post-body p { margin: 0 0 1.1rem; }
+.post-body strong { color: var(--text); }
+.post-body code { background: var(--panel); padding: 0.1rem 0.35rem; border-radius: 6px; font-size: 0.92em; border: 1px solid var(--line); }
+.post-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+.post-list-item a { display: block; border: 1px solid var(--line); background: var(--panel); border-radius: var(--radius); padding: 1.5rem; transition: transform 180ms ease, border-color 180ms ease; }
+.post-list-item a:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); color: inherit; }
+.post-date { color: var(--accent); font-weight: 800; font-size: 0.84rem; }
+.post-list-item h3 { margin: 0.4rem 0 0.3rem; }
+.post-list-item p { color: var(--muted); margin: 0; }
 
 @media print {
   :root { color-scheme: light; }
