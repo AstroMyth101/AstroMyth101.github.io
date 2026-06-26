@@ -1,0 +1,94 @@
+---
+layout: base.njk
+title: "Résumé | Rashid Al-Ma'awali"
+description: "Résumé of Rashid Al-Ma'awali — Mechatronics Engineering student focused on embedded control, electropneumatics, robotics, and CAD."
+permalink: /resume/
+eleventyExcludeFromCollections: true
+---
+<main id="main" class="section-pad">
+  <div class="container resume-page">
+    <div class="resume-toolbar">
+      <a class="back-link" href="/">← Home</a>
+      <button class="button button-secondary print-button" type="button" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+
+    <header class="resume-head">
+      <h1>Rashid Al-Ma'awali</h1>
+      <p class="resume-tagline">Mechatronics Engineering Student · Embedded Control · Electropneumatics · Robotics</p>
+      <p class="resume-contact muted">
+        Muscat, Oman ·
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a> ·
+        <a href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a> ·
+        <a href="{{ site.github }}" target="_blank" rel="noopener">GitHub</a>
+      </p>
+      <p class="resume-summary">Mechatronics Engineering student at Sultan Qaboos University with hands-on experience in embedded control, pneumatic actuation, flex-sensor feedback, CAD design, technical documentation, and research-oriented soft robotics.</p>
+    </header>
+
+    <section class="resume-section">
+      <h2>Education</h2>
+      <div class="resume-entry">
+        <div class="resume-entry-head"><h3>Sultan Qaboos University — B.Sc. Mechatronics Engineering</h3><span class="resume-meta">Expected Jun 2027 · Muscat, Oman</span></div>
+        <ul>
+          <li>Cumulative GPA: 3.29 / 4.00 · Certificate of Excellence in Student Activities (Fall 2025).</li>
+          <li>Coursework: Control Systems, Embedded Systems, Instrumentation &amp; Measurements, Pneumatics &amp; Hydraulics, Electromechanical Systems &amp; Actuators, Machine Design, Mechatronics System Design, Thermal Sciences, Modelling &amp; Simulation.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="resume-section">
+      <h2>Research Experience</h2>
+      <div class="resume-entry">
+        <div class="resume-entry-head"><h3>Research Assistant — Soft Robotic Actuators &amp; Tele-Rehabilitation</h3><span class="resume-meta">Jun 2026 · SQU College of Engineering</span></div>
+        <ul>
+          <li>Building and validating the control system for a soft robotic rehabilitation glove (pneumatic actuation, sensor feedback, control logic, testing).</li>
+          <li>Developing ROS 2 / micro-ROS integration for motion-pattern adjustment and real-time logging of EMG, flex-sensor error, and IMU data.</li>
+          <li>Preparing technical documentation covering control architecture, testing, and engineering recommendations.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="resume-section">
+      <h2>Selected Projects</h2>
+      <div class="resume-entry">
+        <div class="resume-entry-head"><h3><a href="/projects/soft-robotic-glove/">Soft Robotic Rehabilitation Glove Controller</a></h3><span class="resume-meta">2026</span></div>
+        <p>Portable ESP32 electropneumatic controller — four-state FSM, unidirectional PID, flex-sensor feedback, serial telemetry; bench-validated (&lt; 750 g, ~41 OMR). Course project expanded into funded research.</p>
+      </div>
+      <div class="resume-entry">
+        <div class="resume-entry-head"><h3><a href="/projects/speed-reduction-gearbox/">Speed Reduction Gearbox Design</a></h3><span class="resume-meta">Fall 2025</span></div>
+        <p>2.53:1 gearbox sizing shafts (DE-Goodman), spur gears (AGMA), bearings, and head bolts for infinite life.</p>
+      </div>
+      <div class="resume-entry">
+        <div class="resume-entry-head"><h3><a href="/projects/dc-motor-control/">DC-Motor Modeling &amp; Speed Control</a></h3><span class="resume-meta">Spring 2026</span></div>
+        <p>Hardware system identification (NI-DAQ) and closed-loop speed control of a DC servo motor; documented as an IEEE-format paper.</p>
+      </div>
+      <div class="resume-entry">
+        <div class="resume-entry-head"><h3><a href="/projects/secure-access-box/">Secure Access Box with Automated Locking</a></h3><span class="resume-meta">Fall 2025</span></div>
+        <p>Bare-metal ATmega8 access control in C with Proteus schematic capture and simulation.</p>
+      </div>
+      <p class="resume-more"><a href="/#projects">See all nine projects →</a></p>
+    </section>
+
+    <section class="resume-section">
+      <h2>Leadership</h2>
+      <div class="resume-entry">
+        <div class="resume-entry-head"><h3>President, Projects Committee — Free Open-Source Software Society</h3><span class="resume-meta">Jul 2024 – Jul 2025</span></div>
+        <p>Led project-committee planning, supported technical workshops, and coordinated members, faculty, and student teams.</p>
+      </div>
+      <div class="resume-entry">
+        <div class="resume-entry-head"><h3>Vice President, Projects Committee — Mechatronics Engineering Society</h3><span class="resume-meta">Jul 2023 – Jul 2024</span></div>
+        <p>Coordinated technical logistics, venues, and team registration for a university-wide robotics event.</p>
+      </div>
+    </section>
+
+    <section class="resume-section">
+      <h2>Skills &amp; Certifications</h2>
+      <dl class="resume-skills">
+        <div><dt>Embedded &amp; Control</dt><dd>C/C++, Python, MATLAB, ESP32, Arduino, AVR, ROS 2 / micro-ROS, serial telemetry, sensor interfacing, finite-state machines, control systems.</dd></div>
+        <div><dt>Mechanical &amp; Pneumatic</dt><dd>SOLIDWORKS, AutoCAD, Fusion 360, machine design, pneumatics/hydraulics, electropneumatics, pumps/valves, mechanical CAD.</dd></div>
+        <div><dt>Documentation &amp; Leadership</dt><dd>Technical reports, GitHub documentation, project coordination, team leadership, workshop organization.</dd></div>
+        <div><dt>Certifications</dt><dd>Basics of AutoCAD · NVIDIA Fundamentals of Deep Learning · SQU Certificate of Excellence · Fundamentals of Python.</dd></div>
+        <div><dt>Languages</dt><dd>Arabic (Native) · English (CEFR C2 Proficiency via goFLUENT).</dd></div>
+      </dl>
+    </section>
+  </div>
+</main>

@@ -279,6 +279,43 @@ code { font-family: var(--font-mono); }
 .case-section th { color: var(--text); font-weight: 700; }
 .back-link { display: inline-flex; margin-bottom: 1.5rem; color: var(--accent); font-weight: 800; }
 
+/* --- Résumé page --- */
+.resume-page { max-width: 820px; margin-inline: auto; }
+.resume-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.resume-toolbar .back-link { margin-bottom: 0; }
+.resume-head { border-bottom: 1px solid var(--line); padding-bottom: 1.4rem; margin-bottom: 1.6rem; }
+.resume-head h1 { font-size: clamp(2rem, 5vw, 3rem); }
+.resume-tagline { color: var(--accent); font-weight: 700; margin: 0.6rem 0 0.4rem; }
+.resume-contact { font-size: 0.95rem; }
+.resume-contact a { color: var(--accent); }
+.resume-summary { margin-top: 1rem; color: var(--muted); }
+.resume-section { margin-bottom: 1.8rem; }
+.resume-section > h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; margin-bottom: 1rem; }
+.resume-entry { margin-bottom: 1.1rem; }
+.resume-entry-head { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; flex-wrap: wrap; }
+.resume-entry-head h3 { font-size: 1.05rem; }
+.resume-entry-head h3 a:hover { color: var(--accent); }
+.resume-meta { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+.resume-entry p { color: var(--muted); margin: 0.35rem 0 0; }
+.resume-entry ul { margin-top: 0.4rem; }
+.resume-more { margin-top: 0.6rem; font-weight: 700; }
+.resume-more a { color: var(--accent); }
+.resume-skills { display: grid; gap: 0.7rem; margin: 0; }
+.resume-skills dt { font-weight: 700; }
+.resume-skills dd { margin: 0.15rem 0 0; color: var(--muted); }
+
+@media print {
+  :root { color-scheme: light; }
+  body { background: #fff !important; color: #111 !important; }
+  body::before { display: none !important; }
+  .site-header, .site-footer, .resume-toolbar, .skip-link { display: none !important; }
+  main.section-pad { padding: 0 !important; }
+  .resume-page { max-width: none; }
+  a, h1, h2, h3, .resume-tagline, .resume-section > h2, .resume-contact a, .resume-more a { color: #111 !important; }
+  .muted, .resume-entry p, .resume-skills dd, .resume-meta, .resume-summary { color: #333 !important; }
+  a { text-decoration: none; }
+}
+
 @media (max-width: 900px) {
   .section-pad { padding: 5rem 0; }
   .hero-grid, .split-section, .resume-grid, .case-grid { grid-template-columns: 1fr; gap: 2rem; }
