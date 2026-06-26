@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    /* Set theme before paint to avoid a flash: saved choice, else system preference. */
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      } catch (e) {}
+    })();
+  </script>
+  <title>{{ title or site.title }}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <meta name="author" content="{{ site.author }}">
+  <meta name="theme-color" content="#0f172a">
+  {%- set canonical = site.url + (canonicalOverride or page.url) %}
+  <link rel="canonical" href="{{ canonical }}">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ ogTitle or title or site.title }}">
+  <meta property="og:description" content="{{ ogDescription or description or site.description }}">
+  <meta property="og:type" content="{{ ogType or 'website' }}">
+  <meta property="og:url" content="{{ canonical }}">
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-variable.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/space-grotesk-variable.woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script defer src="/assets/js/main.js?v=4"></script>
+  {%- if structuredData %}
+  <script type="application/ld+json">{{ structuredData | dump | safe }}</script>
+  {%- else %}
+  <script type="application/ld+json">{{ {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": site.name,
+    "url": site.url,
+    "jobTitle": "Mechatronics Engineering Student",
+    "email": "mailto:" + site.email,
+    "sameAs": [site.github, site.linkedin],
+    "address": { "@type": "PostalAddress", "addressLocality": "Muscat", "addressCountry": "OM" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Sultan Qaboos University" }
+  } | dump | safe }}</script>
+  {%- endif %}
+</head>
+<body id="page-top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Primary navigation">
+      <a class="brand" href="/#page-top" aria-label="{{ site.name }} homepage">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">{{ site.name }}</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <span class="sr-only">Toggle navigation</span>
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="/#projects">Projects</a>
+        <a href="/#experience">Experience</a>
+        <a href="/#skills">Skills</a>
+        <a href="/#resume">Resume</a>
+        <a href="/#contact">Contact</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme">Theme</button>
+      </div>
+    </nav>
+  </header>
+
+  {{ content | safe }}
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© <span id="year"></span> {{ site.name }}. Built with Eleventy and stubborn engineering taste.</p>
+      <a href="#page-top">Back to top ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

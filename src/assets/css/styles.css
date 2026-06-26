@@ -1,5 +1,23 @@
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/assets/fonts/inter-variable.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Space Grotesk Variable";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("/assets/fonts/space-grotesk-variable.woff2") format("woff2");
+}
+
 :root {
   color-scheme: dark;
+  --font-sans: "Inter Variable", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk Variable", "Space Grotesk", var(--font-sans);
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   --bg: #08111f;
   --bg-soft: #0f172a;
   --panel: rgba(15, 23, 42, 0.78);
@@ -34,7 +52,9 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   background:
     radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 35rem),
     radial-gradient(circle at 80% 10%, rgba(245, 158, 11, 0.10), transparent 26rem),
@@ -60,10 +80,11 @@ body::before {
 a { color: inherit; text-decoration: none; }
 a:hover { color: var(--accent); }
 p { margin: 0 0 1rem; }
-h1, h2, h3 { line-height: 1.1; margin: 0; letter-spacing: -0.04em; }
-h1 { font-size: clamp(3rem, 7vw, 6.4rem); max-width: 12ch; }
-h2 { font-size: clamp(2rem, 4vw, 3.6rem); }
-h3 { font-size: 1.25rem; }
+h1, h2, h3 { line-height: 1.08; margin: 0; letter-spacing: -0.02em; }
+h1, h2 { font-family: var(--font-display); font-weight: 600; }
+h1 { font-size: clamp(2.6rem, 5.4vw, 4.6rem); max-width: 16ch; }
+h2 { font-size: clamp(1.85rem, 3.4vw, 2.9rem); }
+h3 { font-size: 1.25rem; font-weight: 700; }
 ul { padding-left: 1.25rem; margin: 1rem 0 0; }
 li + li { margin-top: 0.45rem; }
 
@@ -112,8 +133,11 @@ li + li { margin-top: 0.45rem; }
   width: 42px;
   height: 42px;
   border-radius: 14px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+  background:
+    url('/assets/images/profile-photo.svg') center / cover no-repeat,
+    linear-gradient(135deg, var(--accent), var(--accent-warm));
   color: #020617;
+  overflow: hidden;
   box-shadow: 0 0 30px rgba(56, 189, 248, 0.24);
 }
 .nav-links { display: flex; align-items: center; gap: 1.1rem; color: var(--muted); font-size: 0.96rem; }
@@ -174,7 +198,8 @@ li + li { margin-top: 0.45rem; }
 .terminal-card { position: relative; overflow: hidden; }
 .terminal-bar { display: flex; gap: 0.4rem; padding: 1rem; border-bottom: 1px solid var(--line); }
 .terminal-bar span { width: 12px; height: 12px; border-radius: 999px; background: var(--muted); opacity: 0.8; }
-pre { overflow-x: auto; margin: 0; padding: 1.4rem; color: #dbeafe; font-size: 0.92rem; }
+pre { overflow-x: auto; margin: 0; padding: 1.4rem; color: #dbeafe; font-size: 0.9rem; font-family: var(--font-mono); line-height: 1.5; }
+code { font-family: var(--font-mono); }
 [data-theme="light"] pre { color: #0f172a; }
 .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-top: 0.9rem; }
 .metrics-grid div { border: 1px solid var(--line); background: var(--panel); border-radius: 18px; padding: 1rem; }
@@ -241,6 +266,14 @@ pre { overflow-x: auto; margin: 0; padding: 1.4rem; color: #dbeafe; font-size: 0
 .case-content { display: grid; gap: 1rem; }
 .case-section { border: 1px solid var(--line); background: var(--panel); border-radius: var(--radius); padding: 1.5rem; }
 .case-section p, .case-section li { color: var(--muted); }
+.case-section h2 { margin-bottom: 0.4rem; }
+.case-section strong { color: var(--text); }
+.case-figure { margin: 1.4rem 0 0; }
+.case-figure img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-soft); }
+.case-figure figcaption { margin-top: 0.6rem; color: var(--muted); font-size: 0.86rem; }
+.case-section table { width: 100%; border-collapse: collapse; margin-top: 1.2rem; font-size: 0.92rem; }
+.case-section th, .case-section td { text-align: left; padding: 0.55rem 0.7rem; border-bottom: 1px solid var(--line); color: var(--muted); vertical-align: top; }
+.case-section th { color: var(--text); font-weight: 700; }
 .back-link { display: inline-flex; margin-bottom: 1.5rem; color: var(--accent); font-weight: 800; }
 
 @media (max-width: 900px) {
@@ -273,7 +306,22 @@ pre { overflow-x: auto; margin: 0; padding: 1.4rem; color: #dbeafe; font-size: 0
   .project-grid { grid-template-columns: 1fr; }
 }
 
+/* --- Interaction polish --- */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+::selection { background: color-mix(in srgb, var(--accent) 32%, transparent); }
+.skill-card, .timeline-item { transition: transform 180ms ease, border-color 180ms ease; }
+.skill-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.button { transition: transform 160ms ease, background 160ms ease, color 160ms ease, border-color 160ms ease; }
+.button:hover { transform: translateY(-2px); }
+.brand-mark { transition: box-shadow 220ms ease, transform 220ms ease; }
+.brand:hover .brand-mark { box-shadow: 0 0 36px rgba(56, 189, 248, 0.4); transform: translateY(-1px); }
+.reveal.stagger > * { opacity: 0; transform: translateY(14px); transition: opacity 520ms ease, transform 520ms ease; }
+.reveal.stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+.reveal.stagger.is-visible > *:nth-child(2) { transition-delay: 70ms; }
+.reveal.stagger.is-visible > *:nth-child(3) { transition-delay: 140ms; }
+.reveal.stagger.is-visible > *:nth-child(4) { transition-delay: 210ms; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; transition: none !important; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal, .reveal.stagger > * { opacity: 1; transform: none; }
 }

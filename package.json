@@ -1,0 +1,20 @@
+{
+  "name": "astromyth101-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio of Rashid Al-Ma'awali, built with Eleventy (plain static HTML output).",
+  "license": "MIT",
+  "author": "Rashid Al-Ma'awali",
+  "private": true,
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "clean": "rimraf _site"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-img": "^6.0.4",
+    "@11ty/eleventy-plugin-rss": "^2.0.4",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0"
+  }
+}
