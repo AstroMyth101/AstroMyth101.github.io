@@ -76,6 +76,28 @@ if ('IntersectionObserver' in window) {
   revealItems.forEach((item) => item.classList.add('is-visible'));
 }
 
+// Copy-to-clipboard email (progressive enhancement: the mailto link still works without JS)
+const copyEmailButtons = document.querySelectorAll('.copy-email');
+
+for (const button of copyEmailButtons) {
+  button.addEventListener('click', async () => {
+    const email = button.dataset.email;
+    const original = button.dataset.label || button.textContent;
+    if (!email) return;
+    try {
+      await navigator.clipboard.writeText(email);
+      button.textContent = 'Copied ✓';
+    } catch (e) {
+      button.textContent = email;
+    }
+    button.classList.add('is-copied');
+    window.setTimeout(() => {
+      button.textContent = original;
+      button.classList.remove('is-copied');
+    }, 2000);
+  });
+}
+
 // Project filtering (progressive enhancement: without JS, all cards show)
 const filterChips = document.querySelectorAll('.filter-chip');
 const filterableCards = document.querySelectorAll('.project-card[data-domain]');

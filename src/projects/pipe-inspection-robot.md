@@ -4,6 +4,7 @@ order: 5
 hasCaseStudy: true
 domain: Robotics
 cardTitle: "Pipe Inspection Robot"
+thumbnail: "./src/_images/projects/pipe-inspection-robot/exploded-view.png"
 title: "Pipe Inspection Robot | Rashid Al-Ma'awali"
 caseTitle: "Pipe Inspection Robot"
 description: "A SolidWorks mechanical design for a pipe-inspection robot — a camera module, sealed electronics and sensor compartments, and an articulated linkage frame to travel and brace inside pipework."
@@ -26,6 +27,9 @@ sections:
       machine — modelled as a full SolidWorks assembly.
   - eyebrow: Mechanical Design
     heading: "Camera module, sealed electronics, and a bracing linkage."
+    image: "./src/_images/projects/pipe-inspection-robot/exploded-view.png"
+    imageAlt: "Exploded SolidWorks view of the pipe-inspection robot: two articulated linkage-arm assemblies, twin sealed electronics and sensor compartments forming the central body, and a camera module with a protective dome at the front."
+    caption: "Exploded SolidWorks assembly — articulated bracing arms, twin sealed electronics/sensor compartments, and the front camera module with its protective dome."
     body: |
       The assembly is built from purpose-modelled parts:
 
