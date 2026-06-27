@@ -4,7 +4,7 @@ order: 6
 hasCaseStudy: true
 domain: Robotics
 cardTitle: "Sumo Robot"
-thumbnail: "./src/_images/projects/sumo-robot/robot-built.jpg"
+thumbnail: "./src/_images/projects/sumo-robot/assembled.png"
 title: "Sumo Robot | Rashid Al-Ma'awali"
 caseTitle: "Sumo Robot"
 description: "A panel-built mini-sumo competition robot — designed in Fusion 360 and AutoCAD as a ~200 mm box chassis with an infrared sensor aperture, then built on an aluminium base with proximity sensors to find and push its opponent."
@@ -32,9 +32,9 @@ sections:
       the design and build of that robot.
   - eyebrow: The Design
     heading: "A ~200 mm box chassis, modelled panel by panel."
-    image: "./src/_images/projects/sumo-robot/front-panel.png"
-    imageAlt: "AutoCAD drawing of the robot's front panel: a 200 by 60 mm plate with a 110 mm rounded slot (the aperture for the infrared sensors) and a small notch at the bottom centre."
-    caption: "Front panel (AutoCAD) — the 200 × 60 mm face, with the rounded aperture cut for the forward-looking IR sensors."
+    image: "./src/_images/projects/sumo-robot/assembled.png"
+    imageAlt: "Isometric CAD wireframe of the assembled sumo robot: an open box chassis with a curved leading face, an oval sensor aperture on the front for the infrared sensors, and internal mounting brackets."
+    caption: "Assembled CAD model (Fusion 360 / AutoCAD) — the box chassis with its curved leading face and the oval sensor aperture for the forward IR sensors."
     body: |
       The robot was modelled in **Fusion 360** and detailed as flat panels in **AutoCAD** — a
       ground plate, roof, and four walls that assemble into a **~200 × 200 mm** box (the
