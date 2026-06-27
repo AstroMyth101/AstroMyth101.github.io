@@ -3,47 +3,66 @@ layout: case-study.njk
 order: 6
 hasCaseStudy: true
 domain: Robotics
-cardTitle: "Sumo Robot & Competition Arena"
-thumbnail: "./src/_images/projects/sumo-robot/arena-floor.png"
-title: "Sumo Robot & Competition Arena | Rashid Al-Ma'awali"
-caseTitle: "Sumo Robot & Competition Arena"
-description: "A Fusion 360 sumo-robot design and a full AutoCAD competition arena, produced to run a university robotics event as part of engineering-society projects leadership."
-kicker: "Robotics · Student Society Event"
-summary: "A Fusion 360 sumo robot plus a full AutoCAD competition arena, designed to run a university robotics event."
-tags: ["Fusion 360", AutoCAD, Robotics, "Event Design"]
+cardTitle: "Sumo Robot"
+thumbnail: "./src/_images/projects/sumo-robot/robot-built.jpg"
+title: "Sumo Robot | Rashid Al-Ma'awali"
+caseTitle: "Sumo Robot"
+description: "A panel-built mini-sumo competition robot — designed in Fusion 360 and AutoCAD as a ~200 mm box chassis with an infrared sensor aperture, then built on an aluminium base with proximity sensors to find and push its opponent."
+kicker: "Robotics · Sumo Competition"
+summary: "A panel-built mini-sumo robot designed in Fusion 360 + AutoCAD and built on an aluminium base with infrared proximity sensors to find and shove its opponent out of the ring."
+tags: ["Fusion 360", AutoCAD, Robotics, "Sensor Feedback", CAD]
 cardTags: ["Fusion 360", AutoCAD, Robotics]
-heroTags: ["Fusion 360", AutoCAD, Robotics]
+heroTags: ["Fusion 360", AutoCAD, Robotics, "IR Sensing"]
 facts:
   - term: Context
-    detail: "Robotics competition organized through engineering-society projects leadership."
+    detail: "Mini-sumo robot built for a robotics competition."
   - term: Tools
-    detail: "Fusion 360 (robot) and AutoCAD (arena)."
+    detail: "Fusion 360 (3D model) and AutoCAD (panel drawings) — \"finalSumo_uMAX\"."
+  - term: Chassis
+    detail: "Panel-built box, ~200 × 200 mm footprint with ~60 mm walls."
+  - term: Sensing
+    detail: "Infrared proximity sensors for opponent detection (closed-loop)."
 sections:
   - eyebrow: Brief
-    heading: "You can't run a sumo competition without a robot and a ring."
+    heading: "Find the opponent, and shove it out of the ring."
     body: |
-      Two design jobs in one: the **sumo robot** itself, and the **competition arena** it
-      fights in. Both had to be modelled to a usable spec so an event could actually happen —
-      this sat alongside my projects-committee role in the engineering society.
-  - eyebrow: The Robot
-    heading: "A sumo bot, modelled in Fusion 360."
+      A sumo robot has one job: detect the other robot and push it out of the ring without
+      driving itself out. That makes it a tight little **mechatronics** problem — a low, sturdy
+      chassis, enough traction to push, and **sensors** to know where the opponent is. This is
+      the design and build of that robot.
+  - eyebrow: The Design
+    heading: "A ~200 mm box chassis, modelled panel by panel."
+    image: "./src/_images/projects/sumo-robot/front-panel.png"
+    imageAlt: "AutoCAD drawing of the robot's front panel: a 200 by 60 mm plate with a 110 mm rounded slot (the aperture for the infrared sensors) and a small notch at the bottom centre."
+    caption: "Front panel (AutoCAD) — the 200 × 60 mm face, with the rounded aperture cut for the forward-looking IR sensors."
     body: |
-      The robot chassis was designed in **Fusion 360** — the platform that carries the drive,
-      structure, and the low, pushing geometry a sumo bot needs to stay in the ring and shove
-      its opponent out.
-  - eyebrow: The Arena
-    heading: "A full competition ring in AutoCAD."
-    image: "./src/_images/projects/sumo-robot/arena-floor.png"
-    imageAlt: "AutoCAD technical drawing of the sumo competition arena floor — a symmetric cross-shaped plan dimensioned in millimetres (200 × 200 overall, with stepped 73.33 mm bays on each side)."
-    caption: "AutoCAD plan of the arena floor (dohyo) — fully dimensioned so the ring and its enclosing walls could be built to a consistent spec."
+      The robot was modelled in **Fusion 360** and detailed as flat panels in **AutoCAD** — a
+      ground plate, roof, and four walls that assemble into a **~200 × 200 mm** box (the
+      mini-sumo size class) with **~60 mm** sides. The front face carries a rounded **sensor
+      aperture** so the infrared sensors can see straight ahead, and the base is cut to seat the
+      drive and walls. Drawing each panel to dimension means the body could be cut and assembled
+      to a consistent spec.
+  - eyebrow: Sensing
+    heading: "Infrared eyes on the opponent."
     body: |
-      The arena was drawn in **AutoCAD** as a complete set — the ring floor (dohyo) plus the
-      surrounding walls and roof — so the competition surface and enclosure were defined to
-      consistent dimensions and ready to build.
+      Forward-facing **infrared proximity sensors** let the robot detect an opponent in front of
+      it and drive toward it — a simple **closed-loop** behaviour (sense → steer → push) rather
+      than blind, pre-programmed motion. It's the same sensor-feedback thinking that runs through
+      the rest of my work, shrunk down to a 20 cm box.
+  - eyebrow: The Build
+    heading: "From panels to a robot that actually pushes."
+    image: "./src/_images/projects/sumo-robot/robot-built.jpg"
+    imageAlt: "The built sumo robot: an aluminium base plate carrying two yellow cylindrical infrared proximity sensors at the front and wiring, with a low box body and a temporary cardboard top cover."
+    caption: "The built robot — an aluminium base with the forward IR proximity sensors and drive, under a low box body (the top here is a temporary working cover)."
+    body: |
+      The design was built into real hardware: an **aluminium base plate**, the forward IR
+      sensors, a low wheeled drive, and the panel body — shown here mid-build with a temporary
+      cover. Rough edges and all, it's a working robot rather than a render: the point of a
+      sumo bot is that it has to survive contact and keep pushing.
   - eyebrow: Value
-    heading: "Design in service of an event."
+    heading: "A complete small robot, design through build."
     body: |
-      Beyond the CAD, this is engineering that had to produce a *working event*: parts and an
-      arena that real teams could compete in — design tied directly to the society leadership
-      and coordination work behind a university-wide robotics competition.
+      Mechanical CAD, sensor selection, and a physical build that had to work under contact —
+      a compact end-to-end robotics project that ties mechanical design to sensor-driven
+      behaviour.
 ---
