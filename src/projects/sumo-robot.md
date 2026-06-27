@@ -4,6 +4,7 @@ order: 6
 hasCaseStudy: true
 domain: Robotics
 cardTitle: "Sumo Robot & Competition Arena"
+thumbnail: "./src/_images/projects/sumo-robot/arena-floor.png"
 title: "Sumo Robot & Competition Arena | Rashid Al-Ma'awali"
 caseTitle: "Sumo Robot & Competition Arena"
 description: "A Fusion 360 sumo-robot design and a full AutoCAD competition arena, produced to run a university robotics event as part of engineering-society projects leadership."
@@ -32,6 +33,9 @@ sections:
       its opponent out.
   - eyebrow: The Arena
     heading: "A full competition ring in AutoCAD."
+    image: "./src/_images/projects/sumo-robot/arena-floor.png"
+    imageAlt: "AutoCAD technical drawing of the sumo competition arena floor — a symmetric cross-shaped plan dimensioned in millimetres (200 × 200 overall, with stepped 73.33 mm bays on each side)."
+    caption: "AutoCAD plan of the arena floor (dohyo) — fully dimensioned so the ring and its enclosing walls could be built to a consistent spec."
     body: |
       The arena was drawn in **AutoCAD** as a complete set — the ring floor (dohyo) plus the
       surrounding walls and roof — so the competition surface and enclosure were defined to
