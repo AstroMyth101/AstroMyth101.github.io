@@ -15,7 +15,7 @@ ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and r
           I am a Mechatronics Engineering student at Sultan Qaboos University focused on practical hardware-software systems: soft robotics, sensor feedback, pneumatic actuation, control logic, CAD design, and technical documentation.
         </p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#projects">View projects</a>
+          <a class="button button-primary" href="/projects/">View projects</a>
           <a class="button button-secondary" href="/resume/">Résumé</a>
           <a class="button button-secondary" href="{{ site.github }}" target="_blank" rel="noopener">GitHub</a>
           <a class="button button-secondary" href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
@@ -59,6 +59,12 @@ status = "building, testing, improving"</code></pre>
       <div class="content-stack reveal">
         <p>My work sits at the intersection of mechanical design, embedded firmware, controls, and pneumatic actuation. I enjoy building systems that move, sense, respond, and provide measurable feedback rather than remaining as clean diagrams on paper.</p>
         <p>I value clear documentation, practical testing, and honest limitations. A design that works only in a slide deck is decoration; a design that survives troubleshooting earns respect.</p>
+        <div class="signal-row" aria-label="Research interests">
+          <span>Soft robotic actuation</span>
+          <span>Tele-rehabilitation</span>
+          <span>Embedded control</span>
+          <span>Sensor feedback &amp; instrumentation</span>
+        </div>
       </div>
     </div>
   </section>
@@ -67,18 +73,12 @@ status = "building, testing, improving"</code></pre>
     <div class="container">
       <div class="section-heading wide reveal">
         <p class="eyebrow">Selected Engineering Projects</p>
-        <h2>Project work with hardware, firmware, CAD, testing, and documentation.</h2>
-      </div>
-
-      <div class="project-filters" role="group" aria-label="Filter projects by area">
-        <button class="filter-chip is-active" type="button" data-filter="all" aria-pressed="true">All</button>
-        {%- for d in collections.projectDomains %}
-        <button class="filter-chip" type="button" data-filter="{{ d }}" aria-pressed="false">{{ d }}</button>
-        {%- endfor %}
+        <h2>A few representative builds — hardware, firmware, CAD, testing, and documentation.</h2>
       </div>
 
       <div class="project-grid">
         {%- for p in collections.projects %}
+        {%- if p.data.highlight %}
         <article class="project-card reveal{{ ' featured' if p.data.featured }}" data-domain="{{ p.data.domain }}">
           {%- if p.data.featured %}
           <div class="project-visual">
@@ -103,15 +103,20 @@ status = "building, testing, improving"</code></pre>
             {%- endif %}
           </div>
         </article>
+        {%- endif %}
         {%- endfor %}
+      </div>
+
+      <div class="hero-actions">
+        <a class="button button-primary" href="/projects/">View all projects →</a>
       </div>
     </div>
   </section>
 
-  <section class="section-pad border-top" id="experience">
+  <section class="section-pad border-top" id="research">
     <div class="container split-section">
       <div class="section-heading reveal">
-        <p class="eyebrow">Experience</p>
+        <p class="eyebrow">Research &amp; Leadership</p>
         <h2>Research and student leadership with real technical responsibility.</h2>
       </div>
       <div class="timeline reveal">
@@ -176,8 +181,8 @@ status = "building, testing, improving"</code></pre>
   <section class="section-pad contact-section" id="contact">
     <div class="container contact-card reveal">
       <p class="eyebrow">Contact</p>
-      <h2>Interested in embedded systems, robotics, controls, automation, or practical engineering work?</h2>
-      <p>Reach me through email, LinkedIn, or GitHub. Phone number intentionally omitted from the public website; bots can go chew wires somewhere else.</p>
+      <h2>Interested in embedded systems, robotics, controls, or research collaboration?</h2>
+      <p>I'm open to graduate research opportunities and collaborations in robotics, control, and soft-robotic systems. Reach me by email, LinkedIn, or GitHub — phone is kept off the public site to spare it from spam bots.</p>
       <div class="contact-actions">
         <a class="button button-primary" href="mailto:{{ site.email }}">Email me</a>
         <button class="button button-secondary copy-email" type="button" data-email="{{ site.email }}" data-label="Copy email" aria-live="polite">Copy email</button>

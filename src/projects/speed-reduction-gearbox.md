@@ -1,6 +1,7 @@
 ---
 layout: case-study.njk
 order: 2
+highlight: true
 hasCaseStudy: true
 domain: Mechanical
 cardTitle: "Speed Reduction Gearbox Design"
@@ -78,6 +79,17 @@ sections:
         **confined gasket** to keep joint stiffness high; a 75%-proof preload (~2027 lb) gives
         a fatigue factor of ≈ 1.68 and a separation factor of ≈ 20 against the 0–1000 lb
         pressure load.
+  - eyebrow: Design Automation
+    heading: "A parametric Python tool, so resizing a shaft is one input change."
+    body: |
+      To avoid re-deriving fatigue by hand on every iteration, I wrote a small **Python
+      (`xlsxwriter`)** generator that builds a live **DE-Goodman shaft calculator**: enter the
+      material strengths, torque and moment ranges, stress-concentration factors and a trial
+      diameter, and the sheet returns the size factor, the Marin-corrected endurance limit, the
+      **Von Mises** alternating and mean stresses, the resulting **Goodman safety factor**, and
+      the minimum required diameter. The input (engine) and output (compressor) shafts sit side
+      by side with shared material properties, so a change in load or material is a one-cell
+      edit instead of a page of re-derivation.
   - eyebrow: Outcome
     heading: "An integrated drivetrain, every component above the 2.5 target."
     body: |

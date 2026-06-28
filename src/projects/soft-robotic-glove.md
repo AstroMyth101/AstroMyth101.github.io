@@ -2,6 +2,7 @@
 layout: case-study.njk
 order: 1
 featured: true
+highlight: true
 hasCaseStudy: true
 domain: Robotics
 cardTitle: "Soft Robotic Rehabilitation Glove Controller"
@@ -12,7 +13,7 @@ caseTitle: "Soft Robotic Rehabilitation Glove Controller"
 description: "A bench-validated electropneumatic controller for a soft robotic rehabilitation glove (ESP32, PID + finite-state machine, flex-sensor feedback) — built as an MCTE5255 course project and expanded as funded research."
 kicker: "Flagship · Course Project → Funded Research · 2026"
 summary: "Portable electropneumatic controller (ESP32, PID + finite-state machine, flex-sensor feedback) for assisted finger motion — built for a course, then expanded as a Research Assistant."
-tags: [ESP32, "C++", PID, FSM, Electropneumatics, Flex Sensors, "ROS 2", micro-ROS]
+tags: [ESP32, "Arduino Mega 2560", "C++", Python, PID, FSM, Electropneumatics, Flex Sensors, "ROS 2", micro-ROS]
 cardTags: [ESP32, "C++", PID, Electropneumatics, "ROS 2"]
 heroTags: [ESP32, "C++", Electropneumatics, "Flex Sensors", PID, FSM]
 actions:
@@ -101,6 +102,72 @@ sections:
       | Full cycle ×3 | Consistent completion | Met |
       | Safety cutoff | PWM → 0 at ADC ≥ 3500 | Met |
       | Budget & mass | ≤ 50 OMR, < 750 g | Met |
+  - eyebrow: Evolution
+    heading: "From one bench rig to a documented five-finger controller."
+    body: |
+      Work continued past the course build into a cleaner, fully **five-finger** bench line,
+      kept deliberately simple so it can be demonstrated and validated end to end. A single
+      **central 3/2 valve** selects pressure or vacuum for the whole manifold, and each finger
+      gets a normally-open **2/2 isolation valve**: as a finger reaches its target angle its
+      valve closes and holds, while pressure keeps driving the fingers that haven't arrived yet.
+
+      This is an honest match to the shared-air hardware — the system inflates fingers together,
+      vacuums them together, and isolates each one once it is done. It deliberately does **not**
+      claim independent per-finger pressure, which this pneumatic path cannot deliver.
+
+      | Line | Board | Control | Telemetry |
+      | --- | --- | --- | --- |
+      | Minimal bench baseline | Arduino Mega 2560 | Proportional, average-angle | USB-serial CSV + 16×2 I²C LCD + optional MPU6050 |
+      | Research line | ESP32 / ESP32-S3 | Feature-rich | Wi-Fi, dashboard, logging, safety architecture |
+
+      The proportional baseline runs a **pressure → hold → vacuum** cycle on the five-finger
+      average, streaming a structured CSV (target, per-finger angles, error, mode, pump PWM,
+      valve states, and IMU) for repeatable bench logging. It is backed by a public
+      engineering-docs set — architecture, control strategy, calibration worksheet, pin map, and
+      a safety-and-validation checklist — in the
+      [public portfolio repository](https://github.com/AstroMyth101/Soft-Robotic-Glove-Portfolio).
+  - eyebrow: Host-Side Tooling
+    heading: "A small toolchain so the bench data is trustworthy, not just captured."
+    body: |
+      The controller is only half the system; the other half is the **host-side tooling** that
+      makes its bench data reliable and reviewable:
+
+      - **Serial logger / console** — records the CSV telemetry stream to timestamped files while
+        letting the operator issue motion, gain, and calibration commands in the same session, so
+        logging and tuning happen together (and the IDE's serial monitor doesn't fight the script
+        for the port).
+      - **CSV-schema validator** — treats the **firmware as the single source of truth** for the
+        telemetry schema and checks every captured log against it: column count and order,
+        per-column types and ranges, and session boundaries. It is read-only, dependency-free, and
+        ships with a self-test — so report numbers are never computed on a malformed log.
+      - **Step-response analysis** — segments a log at each target change and computes per-finger
+        and average metrics (rise time, overshoot, settling time, steady-state error), ships with
+        its own self-test, and is explicit that a simulation log and a bench log are different
+        levels of evidence — the valve-state channels stay the ground truth for actual isolation
+        timing.
+      - **Plotting** — turns a raw log into a time-aligned, multi-panel figure: finger angles vs.
+        target, control error with the deadband, pump command shaded by control mode, the valve
+        timeline, and IMU — with separate logging sessions detected and split automatically.
+
+      The discipline underneath is the same one the controller follows: the tools are
+      dependency-light and self-tested, and the firmware — not a convenient assumption — defines the
+      schema everything else is checked against.
+  - eyebrow: Simulation & Demo
+    heading: "A firmware-faithful five-finger simulator, in MATLAB and Python."
+    body: |
+      To develop and demonstrate the controller away from the bench, I built a real-time
+      **five-finger simulator** — a MATLAB app with a matching **Python twin** — whose control half
+      is a faithful port of the firmware's control routine: the same average-angle proportional law,
+      the same deadband and minimum-PWM floor, the same pressure → hold → vacuum logic, and the same
+      per-finger isolation as each finger reaches its target. The pneumatic **plant** is clearly
+      labelled as a semi-empirical illustration, never as hardware proof.
+
+      It exposes live tuning of the proportional gains and of the plant's fidelity (flow
+      restriction, pump dead-zone, leakage, viscoelastic creep), so the shared-air system's
+      behaviour is something you can see rather than take on faith. A headless **self-test** backs
+      that up: it sweeps the gain across its full range and checks that the loss-modelled controller
+      never overshoots — matching the bench hardware. A separate
+      [interactive React dashboard](/projects/glove-dashboard/) presents the wider design study.
   - eyebrow: Research Extension
     heading: "What the Research Assistant phase adds."
     body: |
@@ -108,7 +175,7 @@ sections:
 
       - **ROS 2 / micro-ROS** integration for motion-pattern adjustment and real-time logging.
       - **EMG** intention detection (as a supervisory enable) and **IMU** posture sensing.
-      - **Five-finger** independent channels and an **ADC-to-joint-angle** calibration curve.
+      - **Per-finger completion logic** with individual targets, and an **ADC-to-joint-angle** calibration curve.
       - **Hardware safety** — physical emergency stop and pressure-relief — required before any
         human-subject testing.
   - eyebrow: Limitations
