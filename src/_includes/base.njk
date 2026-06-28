@@ -77,13 +77,13 @@
         <span class="sr-only">Toggle navigation</span>
         <span></span><span></span><span></span>
       </button>
+      {%- set navUrl = page.url %}
       <div class="nav-links" id="nav-links">
-        <a href="/#projects">Projects</a>
-        <a href="/#experience">Experience</a>
-        <a href="/#skills">Skills</a>
-        <a href="/blog/">Writing</a>
-        <a href="/#resume">Resume</a>
-        <a href="/#contact">Contact</a>
+        <a href="/projects/"{% if '/projects' in navUrl %} class="is-current" aria-current="page"{% endif %}>Projects</a>
+        <a href="/#research" data-spy="research">Research</a>
+        <a href="/blog/"{% if '/blog' in navUrl %} class="is-current" aria-current="page"{% endif %}>Writing</a>
+        <a href="/resume/"{% if '/resume' in navUrl %} class="is-current" aria-current="page"{% endif %}>Résumé</a>
+        <a href="/#contact" data-spy="contact">Contact</a>
         <button class="theme-toggle" type="button" aria-label="Toggle color theme">Theme</button>
       </div>
     </nav>

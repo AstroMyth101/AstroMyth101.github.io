@@ -1,6 +1,7 @@
 ---
 layout: case-study.njk
 order: 8
+highlight: true
 hasCaseStudy: true
 domain: Controls
 cardTitle: "DC-Motor Modeling & Speed Control"

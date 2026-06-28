@@ -1,0 +1,58 @@
+---
+layout: base.njk
+permalink: /projects/
+title: "Projects | Rashid Al-Ma'awali"
+description: "Engineering projects by Rashid Al-Ma'awali — embedded control, robotics, mechanical CAD, signals, instrumentation, and software, each carried through to hardware, firmware, testing, and documentation."
+ogDescription: "Hardware, firmware, CAD, signals, and software — engineering projects carried through to testing and documentation."
+---
+<main id="main" class="section-pad">
+  <div class="container">
+    <nav class="breadcrumb reveal" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Projects</span>
+    </nav>
+
+    <div class="section-heading wide reveal">
+      <p class="eyebrow">Engineering Projects</p>
+      <h1>Every project carried through to hardware, firmware, CAD, testing, and documentation.</h1>
+      <p class="hero-lede">A working set of course, research, and self-directed builds across embedded control, robotics, mechanical design, signals, instrumentation, and software. Filter by area, or open any one for the full case study.</p>
+    </div>
+
+    <div class="project-filters" role="group" aria-label="Filter projects by area">
+      <button class="filter-chip is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+      {%- for d in collections.projectDomains %}
+      <button class="filter-chip" type="button" data-filter="{{ d }}" aria-pressed="false">{{ d }}</button>
+      {%- endfor %}
+    </div>
+
+    <div class="project-grid">
+      {%- for p in collections.projects %}
+      <article class="project-card reveal{{ ' featured' if p.data.featured }}" data-domain="{{ p.data.domain }}">
+        {%- if p.data.featured %}
+        <div class="project-visual">
+          {%- if p.data.thumbnail %}
+          {% image p.data.thumbnail, p.data.cardTitle + " — system diagram", "(min-width: 900px) 420px, 100vw" %}
+          {%- else %}
+          <span class="chip-icon" aria-hidden="true">{{ p.data.chip or "ESP32" }}</span>
+          {%- endif %}
+        </div>
+        {%- endif %}
+        <div class="card-content">
+          <p class="project-kicker">{{ p.data.kicker }}</p>
+          <h3>{{ p.data.cardTitle or p.data.caseTitle or p.data.title }}</h3>
+          <p>{{ p.data.summary }}</p>
+          {%- set ctags = p.data.cardTags or p.data.tags %}
+          {%- if ctags %}<div class="tag-row">{% for t in ctags %}{% if loop.index <= 5 %}<span>{{ t }}</span>{% endif %}{% endfor %}</div>{% endif %}
+          {%- if (p.data.hasCaseStudy and p.url) or p.data.repo %}
+          <div class="card-actions">
+            {%- if p.data.hasCaseStudy and p.url %}<a href="{{ p.url }}">Read case study →</a>{% endif %}
+            {%- if p.data.repo %}<a href="{{ p.data.repo }}" target="_blank" rel="noopener">Repository</a>{% endif %}
+          </div>
+          {%- endif %}
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</main>

@@ -76,6 +76,30 @@ if ('IntersectionObserver' in window) {
   revealItems.forEach((item) => item.classList.add('is-visible'));
 }
 
+// Scroll-spy: highlight the nav link for the homepage section currently in view.
+// (Other pages use a server-rendered .is-current class based on the URL.)
+const spyLinks = Array.from(document.querySelectorAll('.nav-links a[data-spy]'));
+const spyPairs = spyLinks
+  .map((link) => ({ link, section: document.getElementById(link.dataset.spy) }))
+  .filter((pair) => pair.section);
+
+if (spyPairs.length && 'IntersectionObserver' in window) {
+  const spyObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      const pair = spyPairs.find((p) => p.section === entry.target);
+      if (!pair) continue;
+      pair.link.classList.toggle('is-current', entry.isIntersecting);
+      if (entry.isIntersecting) {
+        pair.link.setAttribute('aria-current', 'true');
+      } else {
+        pair.link.removeAttribute('aria-current');
+      }
+    }
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+  spyPairs.forEach((pair) => spyObserver.observe(pair.section));
+}
+
 // Copy-to-clipboard email (progressive enhancement: the mailto link still works without JS)
 const copyEmailButtons = document.querySelectorAll('.copy-email');
 

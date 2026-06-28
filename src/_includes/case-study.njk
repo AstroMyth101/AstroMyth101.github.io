@@ -6,7 +6,13 @@ schemaType: CreativeWork
   <section class="case-hero">
     <div class="container case-grid">
       <div class="reveal">
-        <a class="back-link" href="/#projects">← Back to projects</a>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/projects/">Projects</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{{ cardTitle or caseTitle or title }}</span>
+        </nav>
         {%- if kicker %}<p class="eyebrow">{{ kicker }}</p>{% endif %}
         <h1>{{ caseTitle or title }}</h1>
         {%- if lede %}<p class="hero-lede">{{ lede }}</p>{% endif %}
