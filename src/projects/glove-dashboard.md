@@ -3,6 +3,7 @@ layout: case-study.njk
 order: 11
 hasCaseStudy: true
 domain: Software
+chip: React
 cardTitle: "Soft-Glove Engineering Dashboard"
 title: "Soft-Glove Engineering Dashboard | Rashid Al-Ma'awali"
 caseTitle: "Soft-Glove Engineering Dashboard"

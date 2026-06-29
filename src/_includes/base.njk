@@ -6,6 +6,7 @@
   <script>
     /* Set theme before paint to avoid a flash: saved choice, else system preference. */
     (function () {
+      document.documentElement.classList.add('js');
       try {
         var saved = localStorage.getItem('theme');
         var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -17,6 +18,8 @@
   <meta name="description" content="{{ description or site.description }}">
   <meta name="author" content="{{ site.author }}">
   <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="/assets/images/profile-photo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/images/profile-photo.svg">
   {%- set canonical = site.url + (canonicalOverride or page.url) %}
   <link rel="canonical" href="{{ canonical }}">
   <meta property="og:site_name" content="{{ site.name }}">

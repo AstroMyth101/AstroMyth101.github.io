@@ -3,6 +3,7 @@ layout: case-study.njk
 order: 3
 hasCaseStudy: true
 domain: Instrumentation
+chip: NCDT
 cardTitle: "AC-Bridge Displacement Sensor (NCDT)"
 title: "AC-Bridge Displacement Sensor (NCDT) | Rashid Al-Ma'awali"
 caseTitle: "AC-Bridge Displacement Sensor (NCDT)"
