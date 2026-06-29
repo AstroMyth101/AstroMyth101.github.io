@@ -25,6 +25,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(feedPlugin, {
     type: "atom",
     outputPath: "/feed.xml",
+    stylesheet: "/assets/feed.xsl",
     collection: { name: "posts", limit: 0 },
     metadata: {
       language: "en",
