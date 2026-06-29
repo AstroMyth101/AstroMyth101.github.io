@@ -3,6 +3,7 @@ layout: case-study.njk
 order: 10
 hasCaseStudy: true
 domain: Computational
+chip: MATLAB
 cardTitle: "Numerical Methods for Engineers"
 title: "Numerical Methods for Engineers | Rashid Al-Ma'awali"
 caseTitle: "Numerical Methods for Engineers"

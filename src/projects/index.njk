@@ -29,15 +29,13 @@ ogDescription: "Hardware, firmware, CAD, signals, and software — engineering p
     <div class="project-grid">
       {%- for p in collections.projects %}
       <article class="project-card reveal{{ ' featured' if p.data.featured }}" data-domain="{{ p.data.domain }}">
-        {%- if p.data.featured %}
         <div class="project-visual">
           {%- if p.data.thumbnail %}
-          {% image p.data.thumbnail, p.data.cardTitle + " — system diagram", "(min-width: 900px) 420px, 100vw" %}
+          {% image p.data.thumbnail, (p.data.cardTitle or p.data.caseTitle or p.data.title), "(min-width: 760px) 540px, 100vw" %}
           {%- else %}
           <span class="chip-icon" aria-hidden="true">{{ p.data.chip or "ESP32" }}</span>
           {%- endif %}
         </div>
-        {%- endif %}
         <div class="card-content">
           <p class="project-kicker">{{ p.data.kicker }}</p>
           <h3>{{ p.data.cardTitle or p.data.caseTitle or p.data.title }}</h3>
@@ -46,7 +44,7 @@ ogDescription: "Hardware, firmware, CAD, signals, and software — engineering p
           {%- if ctags %}<div class="tag-row">{% for t in ctags %}{% if loop.index <= 5 %}<span>{{ t }}</span>{% endif %}{% endfor %}</div>{% endif %}
           {%- if (p.data.hasCaseStudy and p.url) or p.data.repo %}
           <div class="card-actions">
-            {%- if p.data.hasCaseStudy and p.url %}<a href="{{ p.url }}">Read case study →</a>{% endif %}
+            {%- if p.data.hasCaseStudy and p.url %}<a class="card-link" href="{{ p.url }}">Read case study →</a>{% endif %}
             {%- if p.data.repo %}<a href="{{ p.data.repo }}" target="_blank" rel="noopener">Repository</a>{% endif %}
           </div>
           {%- endif %}

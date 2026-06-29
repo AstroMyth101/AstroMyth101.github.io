@@ -3,6 +3,7 @@ layout: case-study.njk
 order: 9
 hasCaseStudy: true
 domain: Signals
+chip: DSP
 cardTitle: "Signals & Systems DSP Project"
 title: "Signals & Systems DSP Project | Rashid Al-Ma'awali"
 caseTitle: "Signals & Systems DSP Project"
