@@ -34,11 +34,27 @@ document.addEventListener('click', (event) => {
 }, true);
 
 const themeToggle = document.querySelector('.theme-toggle');
+const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+const THEME_BG = { dark: '#070d19', light: '#eef2f8' };
+
+function syncTheme(theme) {
+  if (themeColorMeta) themeColorMeta.content = THEME_BG[theme] || THEME_BG.dark;
+  if (themeToggle) {
+    themeToggle.setAttribute(
+      'aria-label',
+      theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'
+    );
+  }
+}
+
+syncTheme(root.dataset.theme === 'light' ? 'light' : 'dark');
+
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
     const nextTheme = root.dataset.theme === 'light' ? 'dark' : 'light';
     root.dataset.theme = nextTheme;
     localStorage.setItem('theme', nextTheme);
+    syncTheme(nextTheme);
   });
 }
 
