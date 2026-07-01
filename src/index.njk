@@ -17,8 +17,8 @@ ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and r
         <div class="hero-actions">
           <a class="button button-primary" href="/projects/">View projects</a>
           <a class="button button-secondary" href="/resume/">Résumé</a>
-          <a class="button button-secondary" href="{{ site.github }}" target="_blank" rel="noopener">GitHub</a>
-          <a class="button button-secondary" href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="button button-secondary" href="{{ site.github }}" target="_blank" rel="noopener">GitHub<span aria-hidden="true" class="external-icon"> ↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+          <a class="button button-secondary" href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn<span aria-hidden="true" class="external-icon"> ↗</span><span class="sr-only"> (opens in a new tab)</span></a>
         </div>
         <div class="signal-row" aria-label="Core areas">
           <span>Embedded Control</span>
@@ -96,7 +96,7 @@ status = "building, testing, improving"</code></pre>
             {%- if (p.data.hasCaseStudy and p.url) or p.data.repo %}
             <div class="card-actions">
               {%- if p.data.hasCaseStudy and p.url %}<a class="card-link" href="{{ p.url }}">Read case study →</a>{% endif %}
-              {%- if p.data.repo %}<a href="{{ p.data.repo }}" target="_blank" rel="noopener">Repository</a>{% endif %}
+              {%- if p.data.repo %}<a href="{{ p.data.repo }}" target="_blank" rel="noopener">Repository<span aria-hidden="true" class="external-icon"> ↗</span><span class="sr-only"> (opens in a new tab)</span></a>{% endif %}
             </div>
             {%- endif %}
           </div>
@@ -184,8 +184,8 @@ status = "building, testing, improving"</code></pre>
       <div class="contact-actions">
         <a class="button button-primary" href="mailto:{{ site.email }}">Email me</a>
         <button class="button button-secondary copy-email" type="button" data-email="{{ site.email }}" data-label="Copy email" aria-live="polite">Copy email</button>
-        <a class="button button-secondary" href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="button button-secondary" href="{{ site.github }}" target="_blank" rel="noopener">GitHub</a>
+        <a class="button button-secondary" href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn<span aria-hidden="true" class="external-icon"> ↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+        <a class="button button-secondary" href="{{ site.github }}" target="_blank" rel="noopener">GitHub<span aria-hidden="true" class="external-icon"> ↗</span><span class="sr-only"> (opens in a new tab)</span></a>
       </div>
     </div>
   </section>

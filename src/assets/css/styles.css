@@ -452,6 +452,9 @@ code { font-family: var(--font-mono); }
 /* --- Interaction polish --- */
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
 ::selection { background: color-mix(in srgb, var(--accent) 32%, transparent); }
+
+.external-icon { display: inline-block; transition: transform 160ms ease; }
+a:hover .external-icon { transform: translate(2px, -2px); }
 .skill-card, .timeline-item { transition: transform 180ms ease, border-color 180ms ease; }
 .skill-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
 .button { transition: transform 160ms ease, background 160ms ease, color 160ms ease, border-color 160ms ease; }

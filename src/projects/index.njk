@@ -45,7 +45,7 @@ ogDescription: "Hardware, firmware, CAD, signals, and software — engineering p
           {%- if (p.data.hasCaseStudy and p.url) or p.data.repo %}
           <div class="card-actions">
             {%- if p.data.hasCaseStudy and p.url %}<a class="card-link" href="{{ p.url }}">Read case study →</a>{% endif %}
-            {%- if p.data.repo %}<a href="{{ p.data.repo }}" target="_blank" rel="noopener">Repository</a>{% endif %}
+            {%- if p.data.repo %}<a href="{{ p.data.repo }}" target="_blank" rel="noopener">Repository<span aria-hidden="true" class="external-icon"> ↗</span><span class="sr-only"> (opens in a new tab)</span></a>{% endif %}
           </div>
           {%- endif %}
         </div>

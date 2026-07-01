@@ -22,7 +22,7 @@ schemaType: CreativeWork
         {%- if actions %}
         <div class="hero-actions">
           {%- for a in actions %}
-          <a class="button {{ 'button-primary' if loop.first else 'button-secondary' }}" href="{{ a.url }}"{% if a.external %} target="_blank" rel="noopener"{% endif %}>{{ a.label }}</a>
+          <a class="button {{ 'button-primary' if loop.first else 'button-secondary' }}" href="{{ a.url }}"{% if a.external %} target="_blank" rel="noopener"{% endif %}>{{ a.label }}{% if a.external %}<span aria-hidden="true" class="external-icon"> ↗</span><span class="sr-only"> (opens in a new tab)</span>{% endif %}</a>
           {%- endfor %}
         </div>
         {%- endif %}

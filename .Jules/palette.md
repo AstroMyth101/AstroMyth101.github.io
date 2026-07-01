@@ -1,0 +1,3 @@
+## 2025-02-23 - Predictable external links
+**Learning:** Screen reader users and sighted users both lack predictability when links open in a new tab (`target="_blank"`) without visual and semantic cues.
+**Action:** Always append an icon indicating external direction alongside sr-only text `<span class="sr-only"> (opens in a new tab)</span>` for external links to meet WCAG guidelines and provide a delightful visual touch.
