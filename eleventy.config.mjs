@@ -44,10 +44,13 @@ export default function (eleventyConfig) {
   // Rebuild when CSS/JS change during `--serve`
   eleventyConfig.addWatchTarget("src/assets/");
 
-  // ---- Markdown library (HTML allowed, heading anchors) ----
+  // ---- Markdown library (HTML allowed, self-linking heading anchors) ----
   const md = markdownIt({ html: true, linkify: true, typographer: true }).use(
     markdownItAnchor,
-    { permalink: false, level: [2, 3] }
+    {
+      permalink: markdownItAnchor.permalink.headerLink({ safariReaderFix: true }),
+      level: [2, 3],
+    }
   );
   eleventyConfig.setLibrary("md", md);
 
