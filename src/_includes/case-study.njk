@@ -5,8 +5,8 @@ schemaType: CreativeWork
 <main id="main">
   <section class="case-hero">
     <div class="container case-grid">
-      <div class="reveal">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
+      <div class="case-hero-copy">
+        <nav class="breadcrumb" data-reveal="left" aria-label="Breadcrumb">
           <a href="/">Home</a>
           <span aria-hidden="true">/</span>
           <a href="/projects/">Projects</a>
@@ -29,7 +29,7 @@ schemaType: CreativeWork
       </div>
 
       {%- if facts %}
-      <aside class="case-panel reveal" aria-label="Project facts">
+      <aside class="case-panel" data-reveal="right" aria-label="Project facts">
         <dl>
           {%- for f in facts %}
           <div>
@@ -46,12 +46,12 @@ schemaType: CreativeWork
   <section class="section-pad border-top">
     <div class="container case-content">
       {%- for s in sections %}
-      <article class="case-section reveal">
+      <article class="case-section" data-reveal{% if loop.index0 % 2 == 1 %}="wipe"{% endif %}>
         {%- if s.eyebrow %}<p class="eyebrow">{{ s.eyebrow }}</p>{% endif %}
         {%- if s.heading %}<h2>{{ s.heading }}</h2>{% endif %}
         {%- if s.body %}{{ s.body | markdown | safe }}{% endif %}
         {%- if s.image %}
-        <figure class="case-figure">
+        <figure class="case-figure" data-reveal="clip">
           {% image s.image, s.imageAlt %}
           {%- if s.caption %}<figcaption>{{ s.caption }}</figcaption>{% endif %}
         </figure>

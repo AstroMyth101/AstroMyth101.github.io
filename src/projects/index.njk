@@ -7,13 +7,13 @@ ogDescription: "Hardware, firmware, CAD, signals, and software — engineering p
 ---
 <main id="main" class="section-pad">
   <div class="container">
-    <nav class="breadcrumb reveal" aria-label="Breadcrumb">
+    <nav class="breadcrumb" data-reveal="left" aria-label="Breadcrumb">
       <a href="/">Home</a>
       <span aria-hidden="true">/</span>
       <span aria-current="page">Projects</span>
     </nav>
 
-    <div class="section-heading wide reveal">
+    <div class="section-heading wide" data-reveal>
       <p class="eyebrow">Engineering Projects</p>
       <h1>Every project carried through to hardware, firmware, CAD, testing, and documentation.</h1>
       <p class="hero-lede">A working set of course, research, and self-directed builds across embedded control, robotics, mechanical design, signals, instrumentation, and software. Filter by area, or open any one for the full case study.</p>
@@ -28,8 +28,8 @@ ogDescription: "Hardware, firmware, CAD, signals, and software — engineering p
 
     <div class="project-grid">
       {%- for p in collections.projects %}
-      <article class="project-card reveal{{ ' featured' if p.data.featured }}" data-domain="{{ p.data.domain }}">
-        <div class="project-visual">
+      <article class="project-card{{ ' featured' if p.data.featured }}" data-domain="{{ p.data.domain }}" data-reveal style="--si: {{ loop.index0 % 2 }}">
+        <div class="project-visual" style="view-transition-name: proj-{{ p.fileSlug }}">
           {%- if p.data.thumbnail %}
           {% image p.data.thumbnail, (p.data.cardTitle or p.data.caseTitle or p.data.title), "(min-width: 760px) 540px, 100vw" %}
           {%- else %}

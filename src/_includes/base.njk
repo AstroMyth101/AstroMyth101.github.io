@@ -43,8 +43,11 @@
   <link rel="alternate" type="application/atom+xml" title="{{ site.name }} — Writing" href="/feed.xml">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-variable.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/space-grotesk-variable.woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/styles.css">
-  <script defer src="/assets/js/main.js?v=6"></script>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=2">
+  <script defer src="/assets/js/main.js?v=7"></script>
+  {%- if heroCanvas %}
+  <script defer src="/assets/js/hero-canvas.js?v=1"></script>
+  {%- endif %}
   {%- if schemaType %}
   <script type="application/ld+json">
   {
@@ -74,6 +77,7 @@
 </head>
 <body id="page-top">
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
 
   <header class="site-header" id="top">
     <nav class="nav container" aria-label="Primary navigation">
@@ -93,8 +97,10 @@
         <a href="/resume/"{% if '/resume' in navUrl %} class="is-current" aria-current="page"{% endif %}>Résumé</a>
         <a href="/#contact" data-spy="contact">Contact</a>
         <button class="theme-toggle" type="button" aria-label="Switch color theme">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <span class="toggle-icons" aria-hidden="true">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </span>
           <span class="theme-toggle-text">Theme</span>
         </button>
       </div>

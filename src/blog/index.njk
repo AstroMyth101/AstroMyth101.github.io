@@ -7,17 +7,20 @@ eleventyExcludeFromCollections: true
 ---
 <main id="main" class="section-pad">
   <div class="container">
-    <div class="section-heading wide reveal">
+    <div class="section-heading wide" data-reveal>
       <p class="eyebrow">Writing</p>
       <h1>Short notes on embedded control, robotics, and practical mechatronics.</h1>
     </div>
 
     {%- if collections.posts.length %}
-    <ul class="post-list reveal">
+    <ul class="post-list">
       {%- for post in collections.posts %}
-      <li class="post-list-item">
+      <li class="post-list-item" data-reveal>
         <a href="{{ post.url }}">
-          <span class="post-date">{{ post.date | readableDate }}</span>
+          <span class="post-meta-row">
+            <span class="post-date">{{ post.date | readableDate }}</span>
+            <span class="post-index" aria-hidden="true">LOG {% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+          </span>
           <h3>{{ post.data.title }}</h3>
           {%- if post.data.description %}<p>{{ post.data.description }}</p>{% endif %}
         </a>

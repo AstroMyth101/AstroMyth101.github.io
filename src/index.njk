@@ -3,14 +3,15 @@ layout: base.njk
 title: "Rashid Al-Ma'awali | Mechatronics Engineering Portfolio"
 description: "Portfolio of Rashid Al-Ma'awali, a Mechatronics Engineering student focused on embedded control, electropneumatics, robotics, and soft robotic systems."
 ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and research-oriented soft robotics systems."
+heroCanvas: true
 ---
 <main id="main">
   <section class="hero section-pad">
     <div class="container hero-grid">
-      <div class="hero-copy reveal stagger">
+      <div class="hero-copy">
         <p class="eyebrow">Mechatronics Engineering Student · Muscat, Oman</p>
         <p class="status-pill"><span class="status-dot" aria-hidden="true"></span>Currently: Research Assistant — soft robotic rehabilitation, SQU</p>
-        <h1>Embedded control, electropneumatics, and robotics that survive the bench.</h1>
+        <h1>Embedded control, electropneumatics, and robotics that <em class="grad-text">survive the bench</em>.</h1>
         <p class="hero-lede">
           I am a Mechatronics Engineering student at Sultan Qaboos University focused on practical hardware-software systems: soft robotics, sensor feedback, pneumatic actuation, control logic, CAD design, and technical documentation.
         </p>
@@ -28,7 +29,7 @@ ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and r
         </div>
       </div>
 
-      <aside class="hero-panel reveal" aria-label="Illustrative bench readout from the rehabilitation-glove controller">
+      <aside class="hero-panel" aria-label="Illustrative bench readout from the rehabilitation-glove controller">
         <div class="panel-glow" aria-hidden="true"></div>
         <figure class="scope" aria-hidden="true">
           <div class="scope-head">
@@ -40,6 +41,7 @@ ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and r
               <path class="trace trace-1" d="M0,120 C40,120 62,44 100,44 S164,44 200,64 C240,86 284,44 320,44"></path>
               <path class="trace trace-2" d="M0,140 L60,140 L60,92 L140,92 L140,132 L220,132 L220,72 L300,72 L320,72"></path>
             </svg>
+            <canvas class="scope-canvas" data-canvas="scope" aria-hidden="true"></canvas>
           </div>
           <figcaption class="scope-legend">
             <span class="ch ch1">CH1 flex</span>
@@ -48,9 +50,9 @@ ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and r
           </figcaption>
         </figure>
         <div class="metrics-grid">
-          <div><strong>2027</strong><span>Expected graduation</span></div>
-          <div><strong>3.29</strong><span>GPA / 4.00</span></div>
-          <div><strong>C2</strong><span>English (CEFR)</span></div>
+          <div><strong data-count="2027">2027</strong><span>Expected graduation</span></div>
+          <div><strong data-count="3.29" data-decimals="2">3.29</strong><span>GPA / 4.00</span></div>
+          <div><strong data-scramble>C2</strong><span>English (CEFR)</span></div>
         </div>
       </aside>
     </div>
@@ -58,11 +60,11 @@ ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and r
 
   <section class="section-pad border-top" id="about">
     <div class="container split-section">
-      <div class="section-heading reveal">
+      <div class="section-heading" data-reveal="left">
         <p class="eyebrow">About</p>
         <h2>Engineering is where ideas meet wiring, tolerances, and inconvenient reality.</h2>
       </div>
-      <div class="content-stack reveal">
+      <div class="content-stack" data-reveal>
         <p>My work sits at the intersection of mechanical design, embedded firmware, controls, and pneumatic actuation. I enjoy building systems that move, sense, respond, and provide measurable feedback rather than remaining as clean diagrams on paper.</p>
         <p>I value clear documentation, practical testing, and honest limitations. A design that works only in a slide deck is decoration; a design that survives troubleshooting earns respect.</p>
         <div class="signal-row" aria-label="Research interests">
@@ -77,7 +79,7 @@ ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and r
 
   <section class="section-pad border-top" id="projects">
     <div class="container">
-      <div class="section-heading wide reveal">
+      <div class="section-heading wide" data-reveal>
         <p class="eyebrow">Selected Engineering Projects</p>
         <h2>A few representative builds — hardware, firmware, CAD, testing, and documentation.</h2>
       </div>
@@ -85,8 +87,8 @@ ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and r
       <div class="project-grid">
         {%- for p in collections.projects %}
         {%- if p.data.highlight %}
-        <article class="project-card reveal{{ ' featured' if p.data.featured }}" data-domain="{{ p.data.domain }}">
-          <div class="project-visual">
+        <article class="project-card{{ ' featured' if p.data.featured }}" data-domain="{{ p.data.domain }}" data-reveal style="--si: {{ loop.index0 % 2 }}">
+          <div class="project-visual" style="view-transition-name: proj-{{ p.fileSlug }}">
             {%- if p.data.thumbnail %}
             {% image p.data.thumbnail, (p.data.cardTitle or p.data.caseTitle or p.data.title), "(min-width: 760px) 540px, 100vw" %}
             {%- else %}
@@ -111,7 +113,7 @@ ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and r
         {%- endfor %}
       </div>
 
-      <div class="hero-actions">
+      <div class="hero-actions" data-reveal>
         <a class="button button-primary" href="/projects/">View all projects →</a>
       </div>
     </div>
@@ -119,12 +121,12 @@ ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and r
 
   <section class="section-pad border-top" id="research">
     <div class="container split-section">
-      <div class="section-heading reveal">
+      <div class="section-heading" data-reveal="left">
         <p class="eyebrow">Research &amp; Leadership</p>
         <h2>Research and student leadership with real technical responsibility.</h2>
       </div>
-      <div class="timeline reveal">
-        <article class="timeline-item">
+      <div class="timeline">
+        <article class="timeline-item" data-reveal>
           <span class="timeline-date">Jun 2026</span>
           <h3>Research Assistant · Soft Robotic Actuators &amp; Tele-Rehabilitation</h3>
           <p class="muted">Sultan Qaboos University, College of Engineering</p>
@@ -134,12 +136,12 @@ ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and r
             <li>Preparing technical documentation covering architecture, testing, and engineering recommendations.</li>
           </ul>
         </article>
-        <article class="timeline-item">
+        <article class="timeline-item" data-reveal>
           <span class="timeline-date">Jul 2024 – Jul 2025</span>
           <h3>President, Projects Committee · Free Open-Source Software Society</h3>
           <p>Led project-committee planning, supported technical workshop organization, and coordinated with society members, faculty, and student teams.</p>
         </article>
-        <article class="timeline-item">
+        <article class="timeline-item" data-reveal>
           <span class="timeline-date">Jul 2023 – Jul 2024</span>
           <h3>Vice President, Projects Committee · Mechatronics Engineering Society</h3>
           <p>Coordinated technical logistics, venue arrangements, and team registration for a university-wide robotics event.</p>
@@ -150,27 +152,27 @@ ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and r
 
   <section class="section-pad border-top" id="skills">
     <div class="container">
-      <div class="section-heading wide reveal">
+      <div class="section-heading wide" data-reveal>
         <p class="eyebrow">Technical Stack</p>
         <h2>Skills grouped by how they are used in real systems.</h2>
       </div>
       <div class="skills-grid">
-        <article class="skill-card reveal"><h3>Embedded &amp; Control</h3><p>C/C++, Python, MATLAB, ESP32, Arduino, AVR, ROS 2, micro-ROS, serial telemetry, sensor interfacing, finite-state machines, control systems.</p></article>
-        <article class="skill-card reveal"><h3>Mechanical &amp; Pneumatic</h3><p>SOLIDWORKS, AutoCAD, Fusion 360, machine design, pneumatics/hydraulics, electropneumatics, pumps, valves, mechanical CAD.</p></article>
-        <article class="skill-card reveal"><h3>Documentation &amp; Leadership</h3><p>Technical reports, GitHub documentation, project coordination, team leadership, workshop organization, communication.</p></article>
+        <article class="skill-card" data-reveal style="--si: 0"><h3>Embedded &amp; Control</h3><p>C/C++, Python, MATLAB, ESP32, Arduino, AVR, ROS 2, micro-ROS, serial telemetry, sensor interfacing, finite-state machines, control systems.</p></article>
+        <article class="skill-card" data-reveal style="--si: 1"><h3>Mechanical &amp; Pneumatic</h3><p>SOLIDWORKS, AutoCAD, Fusion 360, machine design, pneumatics/hydraulics, electropneumatics, pumps, valves, mechanical CAD.</p></article>
+        <article class="skill-card" data-reveal style="--si: 2"><h3>Documentation &amp; Leadership</h3><p>Technical reports, GitHub documentation, project coordination, team leadership, workshop organization, communication.</p></article>
       </div>
     </div>
   </section>
 
   <section class="section-pad border-top" id="resume">
     <div class="container resume-grid">
-      <div class="section-heading reveal">
+      <div class="section-heading" data-reveal="left">
         <p class="eyebrow">Resume Snapshot</p>
         <h2>Mechatronics Engineering at Sultan Qaboos University.</h2>
         <p class="muted">Expected graduation: June 2027 · Muscat, Oman</p>
         <p><a class="button button-secondary" href="/resume/">View full résumé →</a></p>
       </div>
-      <div class="resume-card reveal">
+      <div class="resume-card" data-reveal>
         <h3>Education</h3>
         <p><strong>Sultan Qaboos University</strong> — B.Sc. in Mechatronics Engineering</p>
         <p>Coursework includes Control Systems, Embedded Systems, Instrumentation &amp; Measurements, Pneumatics &amp; Hydraulics, Electromechanical Systems &amp; Actuators, Machine Design, Mechatronics System Design, Thermal Sciences, and Modelling &amp; Simulation.</p>
@@ -183,7 +185,7 @@ ogDescription: "Embedded control, electropneumatics, robotics, CAD design, and r
   </section>
 
   <section class="section-pad contact-section" id="contact">
-    <div class="container contact-card reveal">
+    <div class="container contact-card" data-reveal="scale">
       <p class="eyebrow">Contact</p>
       <h2>Interested in embedded systems, robotics, controls, or research collaboration?</h2>
       <p>I'm open to graduate research opportunities and collaborations in robotics, control, and soft-robotic systems. Reach me by email, LinkedIn, or GitHub — phone is kept off the public site to spare it from spam bots.</p>
