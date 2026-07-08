@@ -1,0 +1,2 @@
+# Git hook scripts must stay LF so the #!/bin/sh shebang works on Linux/macOS clones
+.githooks/post-merge text eol=lf

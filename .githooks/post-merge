@@ -1,0 +1,15 @@
+#!/bin/sh
+# Keep Jules's .jules/ metadata out of version control after a sync.
+#
+# .jules/ is in .gitignore, but Jules writes to it on every commit/PR and can
+# re-add it in a branch we later merge or pull. .gitignore does not affect
+# already-tracked files, so this runs after each merge (git pull / git merge):
+# if .jules/ slipped back into the index, re-untrack it. Local files are kept.
+#
+# Activation (once per clone): git config core.hooksPath .githooks
+tracked=$(git ls-files .jules/)
+if [ -n "$tracked" ]; then
+    git rm -r --cached --quiet .jules
+    git commit --quiet -m "Untrack .jules/ working files"
+    echo "[post-merge] .jules/ was re-tracked upstream -> untracked it and committed the cleanup. Run 'git push' to update the remote."
+fi
