@@ -36,7 +36,7 @@ npm run clean     # removes _site/
 
 ## Notes
 
-- Self-hosted variable fonts (Inter + Space Grotesk); responsive `webp` images via
+- Self-hosted variable fonts (Inter + Space Grotesk); responsive `avif` + `webp` images via
   `@11ty/eleventy-img`.
 - Dark and light themes: follows `prefers-color-scheme` by default, with a manual toggle that
   persists the choice.
