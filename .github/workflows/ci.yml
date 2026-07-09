@@ -3,6 +3,9 @@ name: Build check
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build site
