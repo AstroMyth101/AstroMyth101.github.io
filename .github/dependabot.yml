@@ -1,0 +1,22 @@
+version: 2
+updates:
+  # npm dev dependencies (Eleventy and plugins)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      # Major versions can break the build; upgrade these manually
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  # Actions used in .github/workflows
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
