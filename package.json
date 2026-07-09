@@ -6,6 +6,7 @@
   "author": "Rashid Al-Ma'awali",
   "private": true,
   "scripts": {
+    "prepare": "git config core.hooksPath .githooks || exit 0",
     "build": "eleventy",
     "serve": "eleventy --serve",
     "clean": "rimraf _site"
