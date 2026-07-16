@@ -3,24 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self';">
-  <script>
-    /* Set theme before paint to avoid a flash: saved choice, else system preference.
-       Also emit a matching theme-color meta so the mobile browser chrome matches. */
-    (function () {
-      document.documentElement.classList.add('js');
-      var theme = 'dark';
-      try {
-        var saved = localStorage.getItem('theme');
-        theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      } catch (e) {}
-      document.documentElement.dataset.theme = theme;
-      var meta = document.createElement('meta');
-      meta.name = 'theme-color';
-      meta.content = theme === 'light' ? '#eef2f8' : '#070d19';
-      document.head.appendChild(meta);
-    })();
-  </script>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self';">
+  <script src="/assets/js/theme-init.js"></script>
   <title>{{ title or site.title }}</title>
   <meta name="description" content="{{ description or site.description }}">
   <meta name="author" content="{{ site.author }}">
