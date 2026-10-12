@@ -25,3 +25,12 @@ jobs:
 
       - name: Build site with Eleventy
         run: npm run build
+
+      - name: Audit and browser readiness (temporary)
+        shell: bash
+        run: |
+          npm audit --json > /tmp/npm-security-audit.json || true
+          node -e 'const a=require("/tmp/npm-security-audit.json"); console.log("AUDIT_SUMMARY",JSON.stringify({counts:a.metadata?.vulnerabilities,affected:Object.entries(a.vulnerabilities||{}).map(([name,v])=>({name,severity:v.severity,via:v.via.map(x=>typeof x==="string"?x:{name:x.name,title:x.title,range:x.range})}))}));'
+          echo "CHROME_BINARY_START"
+          command -v google-chrome || command -v chromium || command -v chromium-browser || true
+          echo "CHROME_BINARY_END"
