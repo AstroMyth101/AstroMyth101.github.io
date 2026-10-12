@@ -109,16 +109,22 @@
       pointer.active += (pointer.targetActive - pointer.active) * 0.06;
       pointer.smoothX += (pointer.x - pointer.smoothX) * 0.08;
 
+      // ⚡ Bolt: Hoist invariant derivations out of the canvas render loop
+      const bumpAmp = pointer.active * 1.1;
+      const ch1Phase1 = t * 0.0016;
+      const ch1Phase2 = -t * 0.0034;
+      const ch2Phase = -t * 0.0011;
+
       // CH1: composite sine (flex signal) with a Gaussian bump near the pointer
       const mid1 = height * 0.42;
       const a1 = height * 0.15;
       const a2 = height * 0.055;
       ctx.beginPath();
       for (let x = 0; x <= width; x += 3) {
-        const bump = 1 + pointer.active * 1.1 * Math.exp(-((x - pointer.smoothX) ** 2) / (2 * 70 ** 2));
+        const bump = 1 + bumpAmp * Math.exp(-((x - pointer.smoothX) ** 2) / 9800); // 2 * 70^2 = 9800
         const y = mid1
-          + a1 * bump * Math.sin(x * 0.021 + t * 0.0016)
-          + a2 * bump * Math.sin(x * 0.047 - t * 0.0034);
+          + a1 * bump * Math.sin(x * 0.021 + ch1Phase1)
+          + a2 * bump * Math.sin(x * 0.047 + ch1Phase2);
         if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
       strokeGlow(palette.accent, 0.95);
@@ -128,7 +134,7 @@
       const a3 = height * 0.1;
       ctx.beginPath();
       for (let x = 0; x <= width; x += 3) {
-        const y = mid2 + a3 * Math.tanh(3.2 * Math.sin(x * 0.012 - t * 0.0011));
+        const y = mid2 + a3 * Math.tanh(3.2 * Math.sin(x * 0.012 + ch2Phase));
         if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
       strokeGlow(palette.warm, 0.8);
@@ -148,18 +154,26 @@
       ctx.fillStyle = rgba(palette.bg, 0.3);
       ctx.fillRect(0, 0, width, height);
 
+      // ⚡ Bolt: Pre-calculate pulse attributes outside the inner loop
+      const activePulses = pulses.map(pulse => {
+        const age = t - pulse.born;
+        const decay = Math.max(1 - age / 1600, 0);
+        return {
+          px: pulse.x + age * 0.14,
+          amp1: decay * height * 0.32,
+          amp2: decay * height * 0.1,
+        };
+      });
+
       const mid = height / 2;
       ctx.beginPath();
       for (let x = 0; x <= width; x += 3) {
         let y = mid + (Math.random() - 0.5) * 1.2;
-        for (const pulse of pulses) {
-          const age = t - pulse.born;
-          const px = pulse.x + age * 0.14;
-          const decay = Math.max(1 - age / 1600, 0);
-          const d = x - px;
+        for (const pulse of activePulses) {
+          const d = x - pulse.px;
           // A narrow cardiac-style spike: sharp peak with a small leading dip
-          y -= decay * height * 0.32 * Math.exp(-(d ** 2) / (2 * 6 ** 2));
-          y += decay * height * 0.1 * Math.exp(-((d + 16) ** 2) / (2 * 5 ** 2));
+          y -= pulse.amp1 * Math.exp(-(d ** 2) / 72); // 2 * 6^2 = 72
+          y += pulse.amp2 * Math.exp(-((d + 16) ** 2) / 50); // 2 * 5^2 = 50
         }
         if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
