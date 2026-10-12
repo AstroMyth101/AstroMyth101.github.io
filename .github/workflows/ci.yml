@@ -25,14 +25,3 @@ jobs:
 
       - name: Build site with Eleventy
         run: npm run build
-
-      - name: PR37 Playwright regression suite (temporary)
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm install --no-save --package-lock=false --ignore-scripts playwright-core@1.58.2
-          python3 -m http.server 8765 --directory _site >/tmp/pr37-server.log 2>&1 &
-          SERVER_PID=$!
-          trap 'kill $SERVER_PID || true' EXIT
-          sleep 2
-          node scripts/pr37-playwright.cjs
