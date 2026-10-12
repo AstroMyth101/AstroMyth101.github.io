@@ -36,7 +36,7 @@ sections:
       four disconnected homework problems, and every component targets a design factor of
       safety of **2.5** for infinite life.
   - eyebrow: The Load
-    heading: "A reciprocating compressor delivers a brutal, fluctuating torque."
+    heading: "Compressor torque varies throughout each crank cycle."
     image: "./src/_images/projects/gearbox/torque-cycle.png"
     imageAlt: "Compressor torque versus crank angle for one cycle: a large positive peak near 575 lb-in, a negative dip near -175 lb-in, and a smaller secondary peak."
     caption: "Compressor torque over one cycle — the alternating load that drives the fatigue design (Tmax 585, Tmin −175 lb-in)."
@@ -91,10 +91,10 @@ sections:
       by side with shared material properties, so a change in load or material is a one-cell
       edit instead of a page of re-derivation.
   - eyebrow: Outcome
-    heading: "An integrated drivetrain, every component above the 2.5 target."
+    heading: "Integrated drivetrain sizing and reported safety factors."
     body: |
-      The result is a complete, manufacturable gearbox: standard shaft and bearing sizes,
-      a single well-characterized gear pair, and a sealed compressor joint — each verified
-      against the same infinite-life design factor. The components were modelled in SOLIDWORKS
-      and Fusion 360 to confirm fit and assembly.
+      The design specifies shaft and bearing sizes, a 32:81 spur-gear pair, and compressor
+      head bolts. The reported shaft fatigue factors exceed the 2.5 target; the pinion
+      contact safety factor (≈2.1) and bolt fatigue factor (≈1.68) are below it. The assembly
+      was modelled in SOLIDWORKS and Fusion 360 to check geometry and fit.
 ---
