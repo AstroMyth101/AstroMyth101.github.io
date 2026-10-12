@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>PR37 temporary browser validation</title></head>
+<body><h1>PR37 Chromium validation</h1><pre id="log">Running...</pre>
+<script>
+(function () {
+  'use strict';
+  const outcomes = [];
+  const details = [];
+  function assert(ok, message) { if (!ok) throw new Error(message); }
+  function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+  async function waitUntil(fn, ms) {
+    const start = Date.now();
+    while (Date.now() - start < ms) { if (fn()) return; await sleep(80); }
+    throw new Error('Condition timed out');
+  }
+  function record(name, ok, extra) {
+    outcomes.push({name, ok, detail: String(extra || '')});
+    document.querySelector('#log').textContent = JSON.stringify(outcomes);
+  }
+  async function perform(name, fn) {
+    try { const detail = await fn(); record(name, true, detail); }
+    catch (e) { record(name, false, e && (e.stack || e.message) || e); }
+  }
+  async function load(pathname, width) {
+    const frame = document.createElement('iframe');
+    frame.style.width = (width || 390) + 'px';
+    frame.style.height = '780px';
+    frame.src = pathname;
+    frame.setAttribute('title', 'Test subject: ' + pathname);
+    const loaded = new Promise((resolve, reject) => {
+      frame.onload = resolve;
+      frame.onerror = () => reject(new Error('iframe could not load: ' + pathname));
+    });
+    document.body.appendChild(frame);
+    await loaded;
+    await sleep(300);
+    return frame;
+  }
+  async function decodeImages(frame, limit) {
+    const imgs = Array.from(frame.contentDocument.querySelectorAll('img[src]')).slice(0, limit);
+    assert(imgs.length >= 1, 'Expected at least one content image');
+    for (const img of imgs) {
+      img.loading = 'eager';
+      await img.decode();
+      assert(img.naturalWidth > 0 && img.naturalHeight > 0, 'Failed image: ' + img.src);
+    }
+    return imgs.map(img => img.currentSrc.split('/').pop() + ':' + img.naturalWidth + 'x' + img.naturalHeight).join(', ');
+  }
+  async function run() {
+    localStorage.removeItem('theme');
+    const frame = await load('/', 390);
+    const win = frame.contentWindow;
+    const doc = frame.contentDocument;
+    await perform('CSP policy and external initializer', async () => {
+      const meta = doc.querySelector('meta[http-equiv="Content-Security-Policy"]');
+      assert(meta, 'CSP meta element missing');
+      assert(/script-src 'self'/.test(meta.content), 'Expected script-src self');
+      assert(!/script-src[^;]*unsafe-inline/.test(meta.content), 'CSP permits unsafe-inline scripts');
+      assert(doc.querySelector('script[src="/assets/js/theme-init.js"]'), 'Theme script tag missing');
+      assert(doc.documentElement.classList.contains('js'), 'Theme bootstrap did not run');
+      const theme = doc.documentElement.dataset.theme;
+      assert(theme === 'dark' || theme === 'light', 'Missing initial theme');
+      assert(theme === (win.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'), 'System fallback mismatch');
+      const color = doc.querySelector('meta[name="theme-color"]');
+      assert(color && color.content === (theme === 'light' ? '#eef2f8' : '#070d19'), 'Theme-color mismatch');
+      return 'bootstrap=' + theme;
+    });
+    await perform('CSP actually blocks injected inline script', async () => {
+      const violations = [];
+      doc.addEventListener('securitypolicyviolation', e => violations.push(e.violatedDirective));
+      const inline = doc.createElement('script');
+      inline.textContent = 'window.__pr37_inline_has_executed = true;';
+      doc.body.appendChild(inline);
+      await sleep(350);
+      assert(!win.__pr37_inline_has_executed, 'Injected inline script executed');
+      assert(violations.some(v => v.startsWith('script-src')), 'No script-src policy violation event observed');
+      return violations.join(', ');
+    });
+    await perform('Interactive theme toggle', async () => {
+      const before = doc.documentElement.dataset.theme;
+      doc.querySelector('.theme-toggle').click();
+      await waitUntil(() => doc.documentElement.dataset.theme !== before, 3000);
+      const after = doc.documentElement.dataset.theme;
+      assert(after === (before === 'light' ? 'dark' : 'light'), 'Theme value incorrect');
+      assert(localStorage.getItem('theme') === after, 'Theme not persisted to localStorage');
+      const meta = doc.querySelector('meta[name="theme-color"]');
+      assert(meta.content === (after === 'light' ? '#eef2f8' : '#070d19'), 'Theme-color not updated');
+      assert(doc.querySelector('.theme-toggle').getAttribute('aria-label') ===
+        (after === 'light' ? 'Switch to dark theme' : 'Switch to light theme'), 'Theme button aria-label not updated');
+      return 'switched ' + before + ' -> ' + after;
+    });
+    await perform('Persisted theme survives reload', async () => {
+      const before = frame.contentDocument.documentElement.dataset.theme;
+      const loaded = new Promise(resolve => {frame.onload = resolve;});
+      frame.src = '/?qa-pr37-reload=1';
+      await loaded;
+      assert(frame.contentDocument.documentElement.dataset.theme === before, 'Theme lost after reload');
+      assert(frame.contentDocument.documentElement.classList.contains('js'), 'Initializer missing after reload');
+      return 'persisted ' + before;
+    });
+    await perform('Mobile nav opens and Escape closes', async () => {
+      const nav = frame.contentDocument.querySelector('.nav-toggle');
+      const panel = frame.contentDocument.querySelector('#nav-links');
+      assert(nav && panel, 'Mobile navigation unavailable');
+      nav.click();
+      assert(nav.getAttribute('aria-expanded') === 'true' && panel.classList.contains('is-open'), 'Nav did not open');
+      frame.contentDocument.dispatchEvent(new frame.contentWindow.KeyboardEvent('keydown', {key:'Escape', bubbles:true}));
+      assert(nav.getAttribute('aria-expanded') === 'false' && !panel.classList.contains('is-open'), 'Nav did not close with Escape');
+      return 'opened and closed';
+    });
+    await perform('Hero instrument canvas initialized', async () => {
+      const canvas = frame.contentDocument.querySelector('canvas[data-canvas="scope"]');
+      assert(canvas, 'Scope canvas absent');
+      await waitUntil(() => canvas.width > 0 && canvas.height > 0 && canvas.classList.contains('is-armed'), 2800);
+      assert(canvas.getContext('2d'), 'Canvas 2D context missing');
+      return canvas.width + 'x' + canvas.height + ' / ' + canvas.className;
+    });
+    await perform('Home images decode and responsive picture sources', async () => {
+      assert(frame.contentDocument.querySelectorAll('picture source[type="image/avif"]').length >= 1, 'No AVIF sources');
+      assert(frame.contentDocument.querySelectorAll('picture source[type="image/webp"]').length >= 1, 'No WebP sources');
+      return await decodeImages(frame, 4);
+    });
+    const caseFrame = await load('/projects/speed-reduction-gearbox/', 900);
+    await perform('Case study source images decode', async () => {
+      assert(caseFrame.contentDocument.title.includes('Gearbox'), 'Case-study route failed');
+      return await decodeImages(caseFrame, 3);
+    });
+    await perform('First-paint script placement (structural check)', async () => {
+      const head = frame.contentDocument.head;
+      const nodes = Array.from(head.children);
+      const theme = nodes.findIndex(n => n.tagName === 'SCRIPT' && n.getAttribute('src') === '/assets/js/theme-init.js');
+      const css = nodes.findIndex(n => n.tagName === 'LINK' && n.getAttribute('rel') === 'stylesheet');
+      assert(theme >= 0 && css >= 0 && theme < css, 'Theme bootstrap does not precede stylesheet');
+      return 'theme script before stylesheet';
+    });
+    const summary = {outcomes, passed:outcomes.filter(x => x.ok).length, failed:outcomes.filter(x => !x.ok).length};
+    document.body.setAttribute('data-qa-report', btoa(JSON.stringify(summary)));
+    document.querySelector('#log').textContent = JSON.stringify(summary, null, 2);
+  }
+  run().catch(e => {
+    const summary = {fatal: String(e && (e.stack || e) || e), outcomes, passed:outcomes.filter(x=>x.ok).length, failed:1};
+    document.body.setAttribute('data-qa-report', btoa(JSON.stringify(summary)));
+  });
+})();
+</script>
+</body></html>
