@@ -33,7 +33,7 @@ facts:
     detail: "Bench-validated research platform. Not clinically approved and not human-tested."
 sections:
   - eyebrow: Context
-    heading: "A course project that earned its way into funded research."
+    heading: "From course controller to funded research."
     body: |
       This started as the **MCTE5255 Mechatronics Engineering Design** project — a four-person
       team building a controller for a *provided* soft robotic rehabilitation glove. I led the
@@ -41,9 +41,8 @@ sections:
       Assistant** in the College of Engineering to take the controller further under a funded
       grant on soft robotic actuators for tele-rehabilitation.
 
-      The brief was narrow on purpose: don't redesign the glove, design the controller that
-      makes it move *safely, repeatably, and observably* — and prove it on the bench before
-      anyone talks about a patient.
+      The project scope was the controller rather than the glove hardware: actuator sequencing,
+      sensor feedback, safety limits, and repeatable bench tests.
   - eyebrow: Problem
     heading: "Pneumatic soft actuators are nonlinear; open-loop timing can't be trusted."
     body: |
@@ -111,9 +110,9 @@ sections:
       gets a normally-open **2/2 isolation valve**: as a finger reaches its target angle its
       valve closes and holds, while pressure keeps driving the fingers that haven't arrived yet.
 
-      This is an honest match to the shared-air hardware — the system inflates fingers together,
-      vacuums them together, and isolates each one once it is done. It deliberately does **not**
-      claim independent per-finger pressure, which this pneumatic path cannot deliver.
+      With a shared pneumatic line, the fingers inflate or extend together, while individual
+      valves isolate each finger at its target angle. The system does **not** provide
+      independent pressure control for each finger.
 
       | Line | Board | Control | Telemetry |
       | --- | --- | --- | --- |
@@ -127,10 +126,9 @@ sections:
       a safety-and-validation checklist — in the
       [public portfolio repository](https://github.com/AstroMyth101/Soft-Robotic-Glove-Portfolio).
   - eyebrow: Host-Side Tooling
-    heading: "A small toolchain so the bench data is trustworthy, not just captured."
+    heading: "Serial logging, schema validation, and step-response analysis."
     body: |
-      The controller is only half the system; the other half is the **host-side tooling** that
-      makes its bench data reliable and reviewable:
+      Host-side tools capture, validate, and analyse controller telemetry:
 
       - **Serial logger / console** — records the CSV telemetry stream to timestamped files while
         letting the operator issue motion, gain, and calibration commands in the same session, so
