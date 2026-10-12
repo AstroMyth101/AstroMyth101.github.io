@@ -25,3 +25,23 @@ jobs:
 
       - name: Build site with Eleventy
         run: npm run build
+
+      - name: PR37 interactive browser and image tests (temporary)
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp scripts/pr37-qa.html _site/pr37-qa.html
+          python3 -m http.server 8765 --directory _site >/tmp/pr37-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          google-chrome --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-background-networking --virtual-time-budget=14000 --dump-dom http://127.0.0.1:8765/pr37-qa.html >/tmp/pr37-qa-dom.html 2>/tmp/pr37-chrome.log
+          node - <<'NODE'
+          const fs=require('fs');
+          const html=fs.readFileSync('/tmp/pr37-qa-dom.html','utf8');
+          const m=html.match(/data-qa-report="([^"]+)"/);
+          if(!m){console.log('CHROMIUM_DOM_TAIL',html.slice(-1000));process.exit(1)}
+          const report=JSON.parse(Buffer.from(m[1],'base64').toString());
+          console.log('PR37_VALIDATION_REPORT',JSON.stringify(report));
+          if(report.failed||report.fatal||report.passed!==9) process.exit(1);
+          NODE
