@@ -135,7 +135,8 @@ async function checkTheme(page, theme) {
       return JSON.stringify(v);
     });
     await test('Project navigation follows a real link',async()=>{
-      await m.locator('a[href="/projects/"]').first().click();
+      await m.locator('.nav-toggle').click();
+      await m.locator('#nav-links a[href="/projects/"]').click();
       await m.waitForURL('**/projects/');
       assert.equal(await m.locator('main').count(),1);
       return 'navigated to /projects/';
