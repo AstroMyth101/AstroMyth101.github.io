@@ -92,13 +92,9 @@
     });
     await perform('Persisted theme survives reload', async () => {
       const before = frame.contentDocument.documentElement.dataset.theme;
-      frame.contentWindow.location.replace('/?qa-pr37-reload=1');
-      await waitUntil(() => {
-        try {return frame.contentWindow.location.search.includes('qa-pr37-reload') &&
-          frame.contentDocument.documentElement.classList.contains('js');} catch (_) {return false;}
-      }, 6000);
-      assert(frame.contentDocument.documentElement.dataset.theme === before, 'Theme lost after reload');
-      assert(frame.contentDocument.documentElement.classList.contains('js'), 'Initializer missing after reload');
+      const reloaded = await load('/?qa-pr37-reload=1', 390);
+      assert(reloaded.contentDocument.documentElement.dataset.theme === before, 'Theme lost after reload');
+      assert(reloaded.contentDocument.documentElement.classList.contains('js'), 'Initializer missing after reload');
       return 'persisted ' + before;
     });
     await perform('Mobile nav opens and Escape closes', async () => {
