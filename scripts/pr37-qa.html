@@ -92,9 +92,11 @@
     });
     await perform('Persisted theme survives reload', async () => {
       const before = frame.contentDocument.documentElement.dataset.theme;
-      const loaded = new Promise(resolve => {frame.onload = resolve;});
-      frame.src = '/?qa-pr37-reload=1';
-      await loaded;
+      frame.contentWindow.location.replace('/?qa-pr37-reload=1');
+      await waitUntil(() => {
+        try {return frame.contentWindow.location.search.includes('qa-pr37-reload') &&
+          frame.contentDocument.documentElement.classList.contains('js');} catch (_) {return false;}
+      }, 6000);
       assert(frame.contentDocument.documentElement.dataset.theme === before, 'Theme lost after reload');
       assert(frame.contentDocument.documentElement.classList.contains('js'), 'Initializer missing after reload');
       return 'persisted ' + before;
