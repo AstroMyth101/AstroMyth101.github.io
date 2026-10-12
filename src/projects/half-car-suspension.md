@@ -45,10 +45,4 @@ sections:
       and velocity** shows the suspension doing its job: an initial deflection that rings down
       and settles, rather than a harsh single jolt. The state-space form makes it easy to swap
       in different spring/damper values and compare the resulting ride.
-  - eyebrow: Value
-    heading: "From equations on paper to a model you can tune."
-    body: |
-      The project connects derivation, linear-systems theory, and simulation into one
-      workflow — a model you can actually push road inputs through and read ride comfort off
-      of, which is the point of modelling a suspension in the first place.
 ---
