@@ -50,7 +50,7 @@ sections:
       than blind, pre-programmed motion. It's the same sensor-feedback thinking that runs through
       the rest of my work, shrunk down to a 20 cm box.
   - eyebrow: The Build
-    heading: "From panels to a robot that actually pushes."
+    heading: "Chassis assembly and competition testing."
     image: "./src/_images/projects/sumo-robot/robot-built.jpg"
     imageAlt: "The built sumo robot: an aluminium base plate carrying two yellow cylindrical infrared proximity sensors at the front and wiring, with a low box body and a temporary cardboard top cover."
     caption: "The built robot — an aluminium base with the forward IR proximity sensors and drive, under a low box body (the top here is a temporary working cover)."
@@ -59,10 +59,4 @@ sections:
       sensors, a low wheeled drive, and the panel body — shown here mid-build with a temporary
       cover. Rough edges and all, it's a working robot rather than a render: the point of a
       sumo bot is that it has to survive contact and keep pushing.
-  - eyebrow: Value
-    heading: "A complete small robot, design through build."
-    body: |
-      Mechanical CAD, sensor selection, and a physical build that had to work under contact —
-      a compact end-to-end robotics project that ties mechanical design to sensor-driven
-      behaviour.
 ---
