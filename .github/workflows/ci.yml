@@ -20,6 +20,14 @@ jobs:
           node-version: 20
           cache: npm
 
+      - name: Refresh lockfile for PR repair (temporary)
+        run: |
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+          echo "LOCKFILE_BASE64_BEGIN"
+          base64 -w0 package-lock.json
+          echo
+          echo "LOCKFILE_BASE64_END"
+
       - name: Install dependencies
         run: npm ci
 
