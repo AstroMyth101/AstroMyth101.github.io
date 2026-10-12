@@ -50,7 +50,7 @@ sections:
       than blind, pre-programmed motion. It's the same sensor-feedback thinking that runs through
       the rest of my work, shrunk down to a 20 cm box.
   - eyebrow: The Build
-    heading: "Chassis assembly and competition testing."
+    heading: "Chassis assembly and bench build."
     image: "./src/_images/projects/sumo-robot/robot-built.jpg"
     imageAlt: "The built sumo robot: an aluminium base plate carrying two yellow cylindrical infrared proximity sensors at the front and wiring, with a low box body and a temporary cardboard top cover."
     caption: "The built robot — an aluminium base with the forward IR proximity sensors and drive, under a low box body (the top here is a temporary working cover)."
