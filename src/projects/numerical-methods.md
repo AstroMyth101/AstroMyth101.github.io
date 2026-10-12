@@ -57,11 +57,4 @@ sections:
     body: |
       Definite integrals are evaluated with the **composite Simpson's 1/3 rule**, choosing the
       number of intervals to balance truncation error against effort.
-  - eyebrow: Value
-    heading: "A reusable, verified reference for later engineering work."
-    body: |
-      The result is a small library of trustworthy, well-understood routines — the same methods
-      that sit underneath the control, signal-processing, and modelling work elsewhere in this
-      portfolio. Implementing them from first principles turns their failure modes — pivoting,
-      convergence, step size — into something concrete rather than abstract.
 ---

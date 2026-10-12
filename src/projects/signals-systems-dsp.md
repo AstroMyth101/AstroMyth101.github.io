@@ -38,10 +38,4 @@ sections:
       Implementing filtering in MATLAB and comparing input against output closes the loop
       between theory and result: a designed operation, applied to data, with the effect you
       can see rather than just derive.
-  - eyebrow: Value
-    heading: "The bridge from signals theory to DSP practice."
-    body: |
-      It's the project where signals-and-systems becomes a tool — the foundation for the
-      sensor filtering and telemetry that show up in the embedded work elsewhere in this
-      portfolio.
 ---

@@ -24,7 +24,7 @@ facts:
     detail: "AC-bridge analysis, linearity-error budget, analog signal-conditioning design."
 sections:
   - eyebrow: Brief
-    heading: "A voltage is not a measurement until you design the whole chain."
+    heading: "AC-bridge displacement measurement and signal conditioning."
     body: |
       The task was to take a **non-contact displacement transducer (NCDT)** — whose inductance
       shifts only slightly as a target moves — and design the full instrumentation path that
@@ -47,7 +47,7 @@ sections:
       sinusoidal source. The differential output works out to `V₀ = Vₛ · kx / (1 − (kx)²)`,
       which for small displacement collapses to the clean linear law **`V₀ ≈ Vₛ · kx`**.
   - eyebrow: Error Budget
-    heading: "Quantify the nonlinearity instead of hand-waving it."
+    heading: "Estimate the bridge's nonlinearity."
     body: |
       Linearity is treated as a number, not an adjective. The small-displacement approximation
       contributes ≈ **1.01%** error at `kx = 0.1`; air-gap reluctance adds a magnetic
@@ -65,10 +65,4 @@ sections:
         displacement maps to the target **100 mV**;
       - a **2nd-order active low-pass filter (f_c = 20 Hz)** strips the AC carrier ripple and
         high-frequency noise, leaving a steady DC reading.
-  - eyebrow: Value
-    heading: "Measurement fundamentals, done properly."
-    body: |
-      Sensor modelling, bridge analysis, an explicit error budget, and a complete
-      conditioning chain — the unglamorous core of instrumentation, and the difference between
-      *reading* a sensor and actually *measuring* something with it.
 ---

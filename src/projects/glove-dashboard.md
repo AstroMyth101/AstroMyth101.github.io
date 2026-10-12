@@ -26,7 +26,7 @@ facts:
     detail: "The Soft Robotic Rehabilitation Glove controller project."
 sections:
   - eyebrow: Brief
-    heading: "Turn a dense design report into something you can click through."
+    heading: "Interactive requirements and concept-selection dashboard."
     body: |
       The soft-glove design report carries a lot of decisions — customer requirements, a QFD
       ranking, weighted concept selection, and a final architecture. This project distils that
@@ -48,17 +48,10 @@ sections:
       - **Overview** — the project facts, joint motion targets, and the open → flex → hold →
         release assist cycle at a glance.
   - eyebrow: Engineering
-    heading: "A small, honest front-end built around the report's data."
+    heading: "React dashboard based on the design report."
     body: |
       Built with **React + Vite**, charts with **Recharts**, motion with **Framer Motion**, and
-      a component kit (shadcn/ui + Lucide). The interactive plot is driven by a **semi-empirical
-      model**, not live hardware telemetry — the goal is to communicate the design and let a
-      reviewer feel the trade-offs, not to claim a real-time link to the glove. It is the
+      a component kit (shadcn/ui + Lucide). The interactive plot uses a **semi-empirical model** rather than live hardware
+      telemetry. It demonstrates the proposed motion behaviour without a real-time glove link. It is the
       front-end companion to the [embedded controller](/projects/soft-robotic-glove/).
-  - eyebrow: Value
-    heading: "The portfolio's clearest piece of software engineering."
-    body: |
-      Most of my projects are hardware-first; this one is the opposite — interface design,
-      state management, and data visualisation. It also doubles as a presentation tool for the
-      glove work, which is exactly what a design review needs.
 ---

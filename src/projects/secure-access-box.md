@@ -49,7 +49,7 @@ sections:
       and a serial log (`System Ready`, `Warning: Proximity!`, `ALARM: Vibration!`,
       `Wrong PIN`) — so the box's behaviour is observable while it runs.
   - eyebrow: Schematic & Simulation
-    heading: "Designed and proven in Proteus."
+    heading: "Schematic design and Proteus simulation."
     image: "./src/_images/projects/secure-access-box/proteus-simulation.png"
     imageAlt: "Proteus schematic of the access box: an ATmega8 wired to a 4×4 keypad, 16×2 LCD showing ENTER PIN, HC-SR04 ultrasonic sensor, vibration sensor, buzzer, RFID reader, and red/green status LEDs, with a virtual terminal logging system events."
     caption: "Proteus capture & simulation — ATmega8 driving the keypad, LCD, ultrasonic and vibration sensors, RFID, buzzer, and status LEDs, validated before any wiring."
@@ -59,7 +59,7 @@ sections:
       vibration alarm — so the firmware and wiring were verified on virtual hardware before
       committing to physical parts.
   - eyebrow: Bench Build
-    heading: "Then built and tested for real."
+    heading: "Bench assembly and testing."
     image: "./src/_images/projects/secure-access-box/bench-build.jpg"
     imageAlt: "Breadboard prototype of the access box on the lab bench: ATmega8 with an AVR programmer, a 4×4 keypad, a 16×2 LCD, an HC-SR04 ultrasonic sensor, jumper wiring, and a servo-actuated cardboard enclosure standing in for the locked box."
     caption: "The breadboard prototype on the bench — ATmega8, keypad, LCD, ultrasonic sensor, and a servo-actuated enclosure, matching the simulated design."
@@ -67,10 +67,4 @@ sections:
       The design didn't stop at simulation. It was **wired up on a breadboard** and run on real
       hardware — keypad, LCD, ultrasonic and vibration sensors, and a servo actuating a physical
       enclosure — closing the loop from a Proteus schematic to a working prototype.
-  - eyebrow: Value
-    heading: "The embedded basics that everything else builds on."
-    body: |
-      Port I/O, SPI, timing, interrupts, and actuator control on a constrained 8-bit
-      microcontroller — taken all the way from schematic to a tested bench prototype. This is
-      the groundwork the later ESP32 glove controller scales up from.
 ---
