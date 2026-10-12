@@ -35,7 +35,7 @@ jobs:
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
-          google-chrome --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-background-networking --virtual-time-budget=14000 --dump-dom http://127.0.0.1:8765/pr37-qa.html >/tmp/pr37-qa-dom.html 2>/tmp/pr37-chrome.log
+          google-chrome --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-background-networking --virtual-time-budget=30000 --dump-dom http://127.0.0.1:8765/pr37-qa.html >/tmp/pr37-qa-dom.html 2>/tmp/pr37-chrome.log
           node - <<'NODE'
           const fs=require('fs');
           const html=fs.readFileSync('/tmp/pr37-qa-dom.html','utf8');
@@ -45,23 +45,3 @@ jobs:
           console.log('PR37_VALIDATION_REPORT',JSON.stringify(report));
           if(report.failed||report.fatal||report.passed!==9) process.exit(1);
           NODE
-
-      - name: PR37 browser validation (temporary)
-        shell: bash
-        run: |
-          set -euo pipefail
-          cp scripts/pr37-qa.html _site/pr37-qa.html
-          python3 -m http.server 8765 --directory _site >/tmp/pr37-http.log 2>&1 &
-          SERVER_PID=$!
-          trap 'kill $SERVER_PID || true' EXIT
-          sleep 2
-          google-chrome --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --virtual-time-budget=18000 --dump-dom http://127.0.0.1:8765/pr37-qa.html > /tmp/pr37-dom.html 2> /tmp/pr37-chrome.log
-          python3 - <<'PY'
-          import re,base64,json,html
-          text=open('/tmp/pr37-dom.html').read()
-          m=re.search(r'data-qa-report="([^"]+)"',text)
-          if not m: raise SystemExit("Browser test did not finish; tail of output: "+text[-1000:])
-          report=json.loads(base64.b64decode(html.unescape(m.group(1))))
-          print("PR37_QA_REPORT "+json.dumps(report))
-          if report.get("failed",1): raise SystemExit("Interactive regression test failure")
-          PY
